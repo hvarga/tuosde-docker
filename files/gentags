@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "Generating cscope database..."
+cscope -b -q -R
+
+echo "Generating ctags database..."
+ctags -R
+
+echo "Done."
