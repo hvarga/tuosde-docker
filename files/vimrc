@@ -41,7 +41,7 @@ set tabstop=4
 set belloff=all
 set updatetime=100
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 Plug 'sjl/badwolf'
 Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar'
