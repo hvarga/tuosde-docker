@@ -42,7 +42,6 @@ set belloff=all
 set updatetime=100
 
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'sjl/badwolf'
 Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -54,14 +53,17 @@ Plug 'dyng/ctrlsf.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'scrooloose/nerdtree'
 Plug 'davidegx/ctrlp-smarttabs'
-Plug 'ervandew/supertab'
 Plug 'scrooloose/syntastic'
 Plug 'kshenoy/vim-signature'
+Plug 'joshdick/onedark.vim'
+Plug 'yggdroot/indentline'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 call plug#end()
 
 set laststatus=2
-nmap <F8> :TagbarToggle<CR>
-silent! colorscheme badwolf
+nmap <F6> :TagbarToggle<CR>
+let g:onedark_hide_endofbuffer = 1
+colorscheme onedark
 let g:ctrlp_map = '<c-p>p'
 let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_extensions = ['line', 'dir', 'smarttabs']
@@ -89,21 +91,30 @@ nnoremap ,c :call NERDComment(0,"toggle")<CR>
 vnoremap ,c :call NERDComment(0,"toggle")<CR>
 let g:EasyMotion_off_screen_search = 0
 let g:EasyMotion_verbose = 0
-map <F7> :NERDTreeToggle<CR>
+map <F5> :NERDTreeToggle<CR>
 nnoremap <silent><F3> :NERDTreeFind<CR>
-set cscopequickfix=s-,c-,d-,i-,t-,e-
-if filereadable("cscope.out")
-	cs add cscope.out
-endif
-set cscopetag cscopeverbose
-nmap <C-@><C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-@><C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-@><C-@>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-@><C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nmap <C-@><C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_check_on_open = 1
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+function! ToggleSyntastic()
+    for i in range(1, winnr('$'))
+        let bnum = winbufnr(i)
+        if getbufvar(bnum, '&buftype') == 'quickfix'
+            lclose
+            return
+        endif
+    endfor
+    SyntasticCheck
+endfunction
+nnoremap <F7> :call ToggleSyntastic()<CR>
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> dh :call CocActionAsync('doHover')<cr>
+nmap <silent> xc :call CocLocations('ccls','$ccls/call')<cr>
+nmap <silent> xC :call CocLocations('ccls','$ccls/call',{'callee':v:true})<cr>
+set updatetime=400
+au CursorHold * sil call CocActionAsync('highlight')
+au CursorHoldI * sil call CocActionAsync('showSignatureHelp')

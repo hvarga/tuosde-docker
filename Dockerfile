@@ -47,21 +47,37 @@ RUN pacman -Sy --noconfirm \
 	cscope \
 	shellcheck \
 	neovim \
-	xsel
+	python-neovim \
+	clang \
+	man-db \
+	man-pages \
+	glances \
+	lsof \
+	wireshark-cli \
+	cmatrix \
+	nodejs \
+	cppcheck \
+	cmocka \
+	qemu-headless \
+	qemu-headless-arch-extra
 
-# Install gentags.
-COPY files/gentags /usr/local/bin/gentags
-
-# Create and switch user.
+# Create user.
 RUN groupadd sudo && \
-	useradd -m -G wheel -s /bin/zsh docker && \
+	useradd -m -G sudo,wireshark -s /bin/zsh docker && \
 	echo "%sudo ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
-	echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
 	echo "Defaults:docker !authenticate" >> /etc/sudoers
-USER docker
 
-# Set the working directory.
-WORKDIR /home/docker
+# Install fixuid.
+RUN USER=docker && \
+    GROUP=docker && \
+    curl -SsL https://github.com/boxboat/fixuid/releases/download/v0.4/fixuid-0.4-linux-amd64.tar.gz | tar -C /usr/local/bin -xzf - && \
+    chown root:root /usr/local/bin/fixuid && \
+    chmod 4755 /usr/local/bin/fixuid && \
+    mkdir -p /etc/fixuid && \
+    printf "user: $USER\ngroup: $GROUP\n" > /etc/fixuid/config.yml
+
+# Switch user.
+USER docker:docker
 
 # Install yay AUR helper.
 RUN cd /tmp && \
@@ -71,28 +87,8 @@ RUN cd /tmp && \
 	cd .. && \
 	rm -fr /tmp/yay-bin
 
-# Install tmate.
-RUN yay -S --noconfirm tmate
-
-# Install rr.
-RUN yay -S --noconfirm rr
-
-# Install neovim configuration.
-COPY files/vimrc /home/docker/.config/nvim/init.vim
-
-# Install neovim plugin manager.
-RUN curl -sfLo /home/docker/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-# Install plugins.
-RUN nvim +'PlugInstall' +qall &> /dev/null
-
-# Configure neovim as a default system editor.
-ENV EDITOR=nvim \
-	VISUAL=nvim
-
-# Install tmux configuration.
-COPY files/tmux.conf /home/docker/.tmux.conf
+# Install packages from AUR.
+RUN yay -S --noconfirm tmate ccls compiledb compiledb lcov
 
 # Install prezto.
 COPY files/prezto_install /home/docker/prezto_install
@@ -106,6 +102,28 @@ RUN git clone -q --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOT
 RUN echo "source /usr/share/fzf/key-bindings.zsh" >> /home/docker/.zshrc && \
 	echo "source /usr/share/fzf/completion.zsh" >> /home/docker/.zshrc && \
 	echo "export FZF_DEFAULT_OPTS='--height 40% --reverse --border'" >> /home/docker/.zshrc
+
+# Install neovim configuration.
+RUN mkdir -p /home/docker/.config/nvim
+COPY files/vimrc /home/docker/.config/nvim/init.vim
+COPY files/coc-settings.json /home/docker/.config/nvim/coc-settings.json
+
+# Install neovim plugin manager.
+RUN curl -sfLo /home/docker/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+# Install plugins.
+RUN nvim +PlugInstall +UpdateRemotePlugins +qall &> /dev/null
+
+# Configure neovim as a default system editor.
+ENV EDITOR=nvim \
+	VISUAL=nvim
+
+# Install tmux configuration.
+COPY files/tmux.conf /home/docker/.tmux.conf
+
+# Fix user permissions.
+ENTRYPOINT ["fixuid"]
 
 # Start ZSH.
 CMD zsh
