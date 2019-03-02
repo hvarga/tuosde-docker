@@ -108,7 +108,7 @@ RUN echo "source /usr/share/fzf/key-bindings.zsh" >> /home/docker/.zshrc && \
 
 # Install neovim configuration.
 RUN mkdir -p /home/docker/.config/nvim
-COPY --chown=docker files/vimrc /home/docker/.config/nvim/init.vim
+COPY --chown=docker files/neovim_config /home/docker/.config/nvim/init.vim
 COPY --chown=docker files/coc-settings.json /home/docker/.config/nvim/coc-settings.json
 
 # Install neovim plugin manager.
