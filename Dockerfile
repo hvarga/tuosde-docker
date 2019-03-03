@@ -4,7 +4,7 @@ FROM archlinux/base
 # Author and image information.
 LABEL maintainer="hrvoje.varga@gmail.com" \
       build="docker build -t hvarga/tuosde-docker ." \
-      run="docker run -it --rm hvarga/tuosde-docker"
+      run="docker run -it --rm -u $(id --user):$(id --group) -v $(pwd):/home/docker/project hvarga/tuosde-docker"
 
 # Configure terminal to support 256 colors so that application can use more colors.
 ENV TERM xterm-256color
