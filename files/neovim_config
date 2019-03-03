@@ -116,9 +116,9 @@ endfunction
 nnoremap <F7> :call ToggleSyntastic()<CR>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
-nmap <silent> dh :call CocActionAsync('doHover')<cr>
-nmap <silent> xc :call CocLocations('ccls','$ccls/call')<cr>
-nmap <silent> xC :call CocLocations('ccls','$ccls/call',{'callee':v:true})<cr>
+nmap <silent> gh :call CocActionAsync('doHover')<cr>
+nmap <silent> gc :call CocLocations('ccls','$ccls/call')<cr>
+nmap <silent> gC :call CocLocations('ccls','$ccls/call',{'callee':v:true})<cr>
 set updatetime=400
 au CursorHold * sil call CocActionAsync('highlight')
 au CursorHoldI * sil call CocActionAsync('showSignatureHelp')
