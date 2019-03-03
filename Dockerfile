@@ -14,51 +14,11 @@ RUN pacman -Syu --noconfirm
 
 # Install new packages.
 RUN pacman -Sy --noconfirm \
-	base-devel \
-	wget \
-	git \
-	perl-authen-sasl \
-	perl-net-smtp-ssl \
-	perl-mime-tools \
-	zsh \
-	htop \
-	mc \
-	asciinema \
-	tmux \
-	fzf \
-	task \
-	cloc \
-	jq \
-	rsync \
-	tree \
-	valgrind \
-	socat \
-	cgdb \
-	calcurse \
-	gnu-netcat \
-	strace \
-	ltrace \
-	ckermit \
-	cmake \
-	ctags \
-	the_silver_searcher \
-	upx \
-	openssh \
-	cscope \
-	shellcheck \
-	neovim \
-	python-neovim \
-	clang \
-	man-db \
-	man-pages \
-	glances \
-	lsof \
-	wireshark-cli \
-	cmatrix \
-	nodejs \
-	cppcheck \
-	cmocka \
-	qemu-headless \
+	base-devel wget git	perl-authen-sasl perl-net-smtp-ssl perl-mime-tools zsh \
+	htop mc asciinema tmux fzf task cloc jq rsync tree valgrind socat cgdb \
+	calcurse gnu-netcat strace ltrace ckermit cmake ctags the_silver_searcher \
+	upx openssh cscope shellcheck neovim python-neovim clang man-db man-pages \
+	glances lsof wireshark-cli cmatrix nodejs cppcheck cmocka qemu-headless \
 	qemu-headless-arch-extra
 
 # Create user.
