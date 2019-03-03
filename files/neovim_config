@@ -40,7 +40,7 @@ set shiftwidth=4
 set tabstop=4
 set belloff=all
 set updatetime=100
-set colorcolumn=100
+set colorcolumn=150
 
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'itchyny/lightline.vim'
@@ -59,6 +59,8 @@ Plug 'kshenoy/vim-signature'
 Plug 'joshdick/onedark.vim'
 Plug 'yggdroot/indentline'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'farmergreg/vim-lastplace'
+Plug 'rhysd/vim-clang-format'
 call plug#end()
 
 set laststatus=2
@@ -119,3 +121,22 @@ nmap <silent> xC :call CocLocations('ccls','$ccls/call',{'callee':v:true})<cr>
 set updatetime=400
 au CursorHold * sil call CocActionAsync('highlight')
 au CursorHoldI * sil call CocActionAsync('showSignatureHelp')
+let g:clang_format#command = 'clang-format'
+let g:clang_format#code_style = "LLVM"
+let g:clang_format#style_options = {
+        \"Language" : "Cpp",
+        \"TabWidth" : 4,
+        \"UseTab" : "Always",
+        \"ColumnLimit" : 150,
+        \"AllowShortIfStatementsOnASingleLine" : "false",
+        \"BreakBeforeBraces" : "Linux",
+        \"AllowShortFunctionsOnASingleLine" : "Empty",
+        \"BinPackParameters" : "false",
+        \"BinPackArguments" : "false",
+        \"AllowAllParametersOfDeclarationOnNextLine" : "true",
+        \"AlignTrailingComments" : "true",
+        \"IndentCaseLabels" : "true",
+        \"SpaceAfterCStyleCast" : "true",
+        \"SortIncludes" : "false"
+\}
+autocmd FileType c nnoremap <silent><F8> :ClangFormat<CR>
