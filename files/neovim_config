@@ -90,6 +90,7 @@ let g:ctrlsf_context = '-B 0 -A 0'
 let g:ctrlsf_default_root = 'cwd'
 let g:ctrlsf_position = 'bottom'
 let g:ctrlsf_winsize = '20%'
+let g:NERDTreeMapMenu='M'
 nnoremap ,c :call NERDComment(0,"toggle")<CR>
 vnoremap ,c :call NERDComment(0,"toggle")<CR>
 let g:EasyMotion_off_screen_search = 0
