@@ -40,6 +40,7 @@ set shiftwidth=4
 set tabstop=4
 set belloff=all
 set updatetime=100
+set colorcolumn=100
 
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'itchyny/lightline.vim'
