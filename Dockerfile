@@ -76,6 +76,9 @@ COPY --chown=docker files/tmux.conf /home/docker/.tmux.conf
 # Install GDB configuration.
 RUN cp /usr/share/gdb-dashboard/.gdbinit /home/docker/.gdb-dashboard
 
+# Fix compiledb.
+RUN sudo compiledb --help &> /dev/null
+
 # Set working directory.
 WORKDIR /home/docker
 
