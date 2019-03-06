@@ -41,11 +41,11 @@ set tabstop=4
 set belloff=all
 set updatetime=100
 set colorcolumn=150
+set laststatus=2
 
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'airblade/vim-gitgutter'
@@ -53,7 +53,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'dyng/ctrlsf.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'scrooloose/nerdtree'
-Plug 'davidegx/ctrlp-smarttabs'
 Plug 'scrooloose/syntastic'
 Plug 'kshenoy/vim-signature'
 Plug 'joshdick/onedark.vim'
@@ -61,17 +60,14 @@ Plug 'yggdroot/indentline'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'farmergreg/vim-lastplace'
 Plug 'rhysd/vim-clang-format'
+Plug 'machakann/vim-highlightedyank'
+Plug 'tpope/vim-surround'
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
-set laststatus=2
 nmap <F6> :TagbarToggle<CR>
 let g:onedark_hide_endofbuffer = 1
 colorscheme onedark
-let g:ctrlp_map = '<c-p>p'
-let g:ctrlp_cmd = 'CtrlPLastMode'
-let g:ctrlp_extensions = ['line', 'dir', 'smarttabs']
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_user_command = 'ag %s -l --nocolor -f -g ""'
 set signcolumn=yes
 nmap     <C-F>f <Plug>CtrlSFPrompt
 vmap     <C-F>f <Plug>CtrlSFVwordPath
@@ -141,3 +137,16 @@ let g:clang_format#style_options = {
         \"SortIncludes" : "false"
 \}
 autocmd FileType c nnoremap <silent><F8> :ClangFormat<CR>
+nmap <Leader>f :GFiles<CR>
+nmap <Leader>F :Files<CR>
+nmap <Leader>b :Buffers<CR>
+nmap <Leader>t :BTags<CR>
+nmap <Leader>T :Tags<CR>
+nmap <Leader>l :BLines<CR>
+nmap <Leader>L :Lines<CR>
+nmap <Leader>' :Marks<CR>
+nmap <Leader>a :Ag<Space>
+nmap <Leader>H :Helptags!<CR>
+nmap <Leader>C :Commits<CR>
+nmap <Leader>c :BCommits<CR>
+nmap <Leader>M :Maps<CR>
