@@ -42,6 +42,7 @@ set belloff=all
 set updatetime=100
 set colorcolumn=150
 set laststatus=2
+set hidden
 
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'itchyny/lightline.vim'
