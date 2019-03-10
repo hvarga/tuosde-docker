@@ -1,3 +1,5 @@
+set runtimepath+=/usr/share/vim/vimfiles
+set runtimepath+=/usr/share/nvim
 set nocompatible
 filetype plugin on
 filetype indent on
@@ -44,7 +46,7 @@ set colorcolumn=150
 set laststatus=2
 set hidden
 
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin('/usr/share/nvim/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-fugitive'
@@ -111,6 +113,21 @@ function! ToggleSyntastic()
     SyntasticCheck
 endfunction
 nnoremap <F7> :call ToggleSyntastic()<CR>
+
+let g:coc_user_config = {
+    \'languageserver': {
+    \    'ccls': {
+    \        "command": "ccls",
+    \        "filetypes": ["c", "cpp", "objc", "objcpp"],
+    \        "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+    \        "initializationOptions": {
+    \            "cache": {
+    \                "directory": ".ccls-cache"
+    \            }
+    \        }
+    \    }
+    \}
+\}
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gh :call CocActionAsync('doHover')<cr>
