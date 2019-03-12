@@ -115,6 +115,7 @@ endfunction
 nnoremap <F7> :call ToggleSyntastic()<CR>
 
 let g:coc_user_config = {
+    \"coc.preferences.extensionUpdateCheck": "never",
     \'languageserver': {
     \    'ccls': {
     \        "command": "ccls",
