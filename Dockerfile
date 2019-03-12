@@ -4,7 +4,7 @@ FROM archlinux/base
 # Author and image information.
 LABEL maintainer="hrvoje.varga@gmail.com" \
       build="docker build -t hvarga/tuosde-docker ." \
-      run="docker run --privileged --network host -it --rm -e USER_ID=$(id -u) -e GROUP_ID=$(id -g) -e USER_NAME=$(id -un) -v $(pwd):/opt/workspace hvarga/tuosde-docker"
+      run="docker run --privileged --network host -it --rm -e USER_ID=$(id -u) -e GROUP_ID=$(id -g) -e USER_NAME=$(id -un) -e GROUP_NAME=$(id -gn) -v $(pwd):/opt/workspace hvarga/tuosde-docker"
 
 # Configure terminal to support 256 colors so that application can use more colors.
 ENV TERM xterm-256color
