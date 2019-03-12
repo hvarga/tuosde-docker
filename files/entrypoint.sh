@@ -18,7 +18,7 @@ if [ -z "$GROUP_NAME" ]; then
 	exit
 fi
 
-groupadd -g "$GROUP_ID" "$GROUP_NAME"
+groupadd -f -g "$GROUP_ID" "$GROUP_NAME"
 useradd -G sudo --shell /bin/zsh -u "$USER_ID" -g "$GROUP_ID" -o -c "" -m "$USER_NAME"
 export HOME=/home/$USER_NAME
 touch "/home/$USER_NAME/.zshrc"
