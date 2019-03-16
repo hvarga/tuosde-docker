@@ -45,6 +45,8 @@ set updatetime=100
 set colorcolumn=150
 set laststatus=2
 set hidden
+set autoread
+au FocusGained * :checktime
 
 call plug#begin('/usr/share/nvim/plugged')
 Plug 'itchyny/lightline.vim'
