@@ -3,6 +3,18 @@
 ## Introduction
 
 The aim of this repository is to encapsulate the developlement environment described in [TUOSDE](https://www.tuosde.org/) in a form of a Docker image.
+To get this Docker image, either follow chapter [Pull](#pull) to download the pre-built image from the Docker Hub or chapter [Build](#build) to build
+it yourself. The easiest and recommended way is to download the pre-built image from Docker Hub.
+
+After you have gained the image, follow chapter [Run](#run) to run the image.
+
+## Pull
+
+Run the following command:
+
+```shell
+docker pull hvarga/tuosde-docker
+```
 
 ## Build
 
