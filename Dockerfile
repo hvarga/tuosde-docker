@@ -45,7 +45,7 @@ RUN git clone -q https://aur.archlinux.org/yay-bin.git && \
 	rm -fr yay-bin
 
 # Install packages from AUR.
-RUN yay -S --noconfirm tmate ccls compiledb compiledb lcov python-gdbgui prezto-git
+RUN yay -S --noconfirm tmate ccls compiledb compiledb lcov python-gdbgui prezto-git tmuxinator
 
 USER root:root
 
