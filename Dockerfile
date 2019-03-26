@@ -15,7 +15,7 @@ RUN pacman -Syu --noconfirm && pacman -Sy --noconfirm \
 	upx openssh cscope shellcheck neovim python-neovim clang man-db man-pages \
 	glances lsof wireshark-cli cmatrix nodejs cppcheck cmocka qemu-headless \
 	qemu-headless-arch-extra gdb-dashboard python2 python2-setuptools rapidjson \
-	bat ranger
+	bat ranger doxygen graphviz
 
 # Configure user nobody and sudo privileges.
 RUN	groupadd sudo && \
