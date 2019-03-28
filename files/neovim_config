@@ -47,6 +47,7 @@ set laststatus=2
 set hidden
 set autoread
 au FocusGained * :checktime
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 call plug#begin('/usr/share/nvim/plugged')
 Plug 'itchyny/lightline.vim'
