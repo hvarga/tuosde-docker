@@ -29,7 +29,7 @@ docker build -t hvarga/tuosde-docker .
 Run the following command in a root directory of your C project:
 
 ```shell
-docker run --privileged --network host -it --rm -e USER_ID=$(id -u) -e GROUP_ID=$(id -g) -e USER_NAME=$(id -un) -e GROUP_NAME=$(id -gn) -v $(pwd):/opt/workspace hvarga/tuosde-docker
+docker run --privileged --network host -it --rm -e USER_ID=$(id -u) -e GROUP_ID=$(id -g) -e USER_NAME=$(id -un) -e GROUP_NAME=$(id -gn) -v /etc/localtime:/etc/localtime -v $(pwd):/opt/workspace hvarga/tuosde-docker
 ```
 
 Above command will start the Docker container which will start a ZSH session from which you can start working on your project. The source code of your
