@@ -42,7 +42,7 @@ set shiftwidth=4
 set tabstop=4
 set belloff=all
 set updatetime=100
-set colorcolumn=150
+set colorcolumn=80
 set laststatus=2
 set hidden
 set autoread
@@ -149,7 +149,7 @@ let g:clang_format#style_options = {
         \"Language" : "Cpp",
         \"TabWidth" : 4,
         \"UseTab" : "Always",
-        \"ColumnLimit" : 150,
+        \"ColumnLimit" : 80,
         \"AllowShortIfStatementsOnASingleLine" : "false",
         \"BreakBeforeBraces" : "Linux",
         \"AllowShortFunctionsOnASingleLine" : "Empty",
