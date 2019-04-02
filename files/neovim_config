@@ -72,6 +72,7 @@ Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf.vim'
 Plug 'terryma/vim-expand-region'
 Plug 'wellle/visual-split.vim'
+Plug 'conradirwin/vim-bracketed-paste'
 call plug#end()
 
 nmap <F6> :TagbarToggle<CR>
