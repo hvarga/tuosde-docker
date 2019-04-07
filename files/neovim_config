@@ -73,6 +73,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'terryma/vim-expand-region'
 Plug 'wellle/visual-split.vim'
 Plug 'conradirwin/vim-bracketed-paste'
+Plug 'matze/vim-move'
 call plug#end()
 
 nmap <F6> :TagbarToggle<CR>
@@ -177,3 +178,8 @@ nmap <Leader>C :Commits<CR>
 nmap <Leader>c :BCommits<CR>
 nmap <Leader>M :Maps<CR>
 xmap <C-s> <Plug>(Visual-Split-VSSplitAbove)
+let g:move_map_keys = 0
+vmap <C-Down> <Plug>MoveBlockDown
+vmap <C-Up> <Plug>MoveBlockUp
+nmap <C-Down> <Plug>MoveLineDown
+nmap <C-Up> <Plug>MoveLineUp
