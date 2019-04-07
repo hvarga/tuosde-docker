@@ -179,7 +179,7 @@ nmap <Leader>c :BCommits<CR>
 nmap <Leader>M :Maps<CR>
 xmap <C-s> <Plug>(Visual-Split-VSSplitAbove)
 let g:move_map_keys = 0
-vmap <C-Down> <Plug>MoveBlockDown
-vmap <C-Up> <Plug>MoveBlockUp
-nmap <C-Down> <Plug>MoveLineDown
-nmap <C-Up> <Plug>MoveLineUp
+vmap <C-S-Down> <Plug>MoveBlockDown
+vmap <C-S-Up> <Plug>MoveBlockUp
+nmap <C-S-Down> <Plug>MoveLineDown
+nmap <C-S-Up> <Plug>MoveLineUp
