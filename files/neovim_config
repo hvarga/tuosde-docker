@@ -74,6 +74,7 @@ Plug 'terryma/vim-expand-region'
 Plug 'wellle/visual-split.vim'
 Plug 'conradirwin/vim-bracketed-paste'
 Plug 't9md/vim-textmanip'
+Plug 'junegunn/goyo.vim'
 call plug#end()
 
 nmap <F6> :TagbarToggle<CR>
@@ -182,3 +183,4 @@ xmap <C-S-Down> <Plug>(textmanip-move-down)
 xmap <C-S-Up> <Plug>(textmanip-move-up)
 xmap <C-S-Left> <Plug>(textmanip-move-left)
 xmap <C-S-Right> <Plug>(textmanip-move-right)
+nmap <F12> :Goyo<CR>
