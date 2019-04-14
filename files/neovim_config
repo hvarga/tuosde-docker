@@ -1,5 +1,4 @@
-set runtimepath+=/usr/share/vim/vimfiles
-set runtimepath+=/usr/share/nvim
+set runtimepath+=/usr/local/share/nvim
 set nocompatible
 filetype plugin on
 filetype indent on
@@ -50,7 +49,7 @@ au FocusGained * :checktime
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 let g:tex_conceal = ""
 
-call plug#begin('/usr/share/nvim/plugged')
+call plug#begin('/usr/share/nvim/runtime/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-fugitive'
@@ -127,9 +126,15 @@ let g:coc_user_config = {
     \"coc.preferences.extensionUpdateCheck": "never",
     \'languageserver': {
     \    'ccls': {
-    \        "command": "ccls",
+    \        "command": "/usr/bin/ccls",
     \        "filetypes": ["c", "cpp", "objc", "objcpp"],
-    \        "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+    \        "rootPatterns": [
+    \            ".ccls",
+    \            "compile_commands.json",
+    \            ".vim/",
+    \            ".git/",
+    \            ".hg/"
+    \        ],
     \        "initializationOptions": {
     \            "cache": {
     \                "directory": ".ccls-cache"

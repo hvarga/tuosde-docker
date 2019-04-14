@@ -19,9 +19,10 @@ if [ -z "$GROUP_NAME" ]; then
 fi
 
 groupadd -f -g "$GROUP_ID" "$GROUP_NAME"
-useradd -G sudo --shell /bin/zsh -u "$USER_ID" -g "$GROUP_ID" -o -c "" -m "$USER_NAME"
+useradd -G sudo --shell /bin/zsh -u "$USER_ID" -g "$GROUP_ID" -o -c "" \
+	-m "$USER_NAME"
 export HOME=/home/$USER_NAME
 export SHELL=/bin/zsh
 touch "/home/$USER_NAME/.zshrc"
 
-exec /usr/local/bin/gosu "$USER_NAME" "zsh"
+exec gosu "$USER_NAME" "zsh"

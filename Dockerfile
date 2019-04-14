@@ -1,88 +1,82 @@
-# Start from Arch Linux.
-FROM archlinux/base
+# Start from minimal Debian image.
+FROM debian:buster-slim
 
 # Author information.
 LABEL maintainer="hrvoje.varga@gmail.com"
 
-# Configure terminal to support 256 colors so that application can use more colors.
+# Configure terminal to support 256 colors so that application can use more
+# colors.
 ENV TERM xterm-256color
 
-# Update installed packages and install new packages.
-RUN pacman -Syu --noconfirm && pacman -Sy --noconfirm \
-	base-devel wget git	perl-authen-sasl perl-net-smtp-ssl perl-mime-tools zsh \
-	htop mc asciinema tmux fzf task cloc jq rsync tree valgrind socat cgdb \
-	calcurse gnu-netcat strace ltrace ckermit cmake ctags the_silver_searcher \
-	upx openssh cscope shellcheck neovim python-neovim clang man-db man-pages \
-	glances lsof wireshark-cli cmatrix nodejs cppcheck cmocka qemu-headless \
-	qemu-headless-arch-extra gdb-dashboard python2 python2-setuptools rapidjson \
-	bat ranger doxygen graphviz p7zip unrar zip unzip ripgrep
+# Install all other packages.
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+		curl apt-transport-https build-essential wget git-core unzip socat \
+		python less man-db zsh tmate asciinema graphviz jq htop mc tmux cloc \
+		rsync tree valgrind cgdb calcurse netcat strace ltrace tmuxinator \
+		silversearcher-ag upx openssh-client cscope shellcheck glances lsof \
+		tshark cmatrix nodejs cppcheck libcmocka0 qemu qemu-system \
+		rapidjson-dev ranger doxygen p7zip zip lcov gosu ninja-build gettext \
+		libtool libtool-bin autoconf automake pkg-config cmake clang \
+		libclang-dev neovim universal-ctags bear python-neovim ripgrep && \
+	rm -rf /var/lib/apt/lists/*
 
-# Configure user nobody and sudo privileges.
-RUN	groupadd sudo && \
-	echo "%sudo ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
-	echo "Defaults:docker !authenticate" >> /etc/sudoers && \
-	echo "nobody ALL=(ALL) ALL" >> /etc/sudoers && \
-    echo "Defaults:nobody !authenticate" >> /etc/sudoers && \
-	mkdir /home/build && \
-	chgrp nobody /home/build && \
-	chmod g+ws /home/build && \
-	setfacl -m u::rwx,g::rwx /home/build && \
-	setfacl -d --set u::rwx,g::rwx,o::- /home/build
-
-ENV HOME /home/build
-
-# Switch to user nobody to be able to install AUR packages.
-USER nobody:nobody
-
-# Install yay AUR helper.
-WORKDIR /home/build
-RUN git clone -q https://aur.archlinux.org/yay-bin.git && \
-	cd yay-bin && \
-	makepkg -si --noconfirm && \
-	cd .. && \
-	rm -fr yay-bin
-
-# Install packages from AUR.
-RUN yay -S --noconfirm tmate ccls compiledb compiledb lcov python-gdbgui prezto-git tmuxinator
-
-USER root:root
-
-# Configure fzf.
-RUN echo "source /usr/share/fzf/key-bindings.zsh" >> /etc/zsh/zshrc && \
-	echo "source /usr/share/fzf/completion.zsh" >> /etc/zsh/zshrc && \
-	echo "export FZF_DEFAULT_OPTS='--height 40% --reverse --border'" >> /etc/zsh/zshrc
-
-# Install neovim plugin manager.
-RUN mkdir -p /usr/share/nvim/autoload && \
-	mkdir -p /usr/share/nvim/plugged && \
-	curl -sfLo /usr/share/nvim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-# Configure neovim as a default system editor.
+## Configure Neovim as a default system editor.
 ENV EDITOR=nvim \
 	VISUAL=nvim
 
-# Install tmux configuration.
-COPY files/tmux.conf /etc/tmux.conf
+# Install ccls.
+RUN git clone --depth=1 --recursive https://github.com/MaskRay/ccls \
+		/tmp/ccls && \
+	cd /tmp/ccls && \
+	cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release && \
+	cmake --build Release && \
+	cp Release/ccls /usr/bin && \
+	rm -rf /tmp/ccls
 
-# Fix compiledb warnings.
-RUN sudo compiledb --help &> /dev/null
+# Install prezto.
+RUN	git clone --recursive https://github.com/sorin-ionescu/prezto.git \
+		/etc/zsh/prezto && \
+	echo "source /etc/zsh/prezto/runcoms/zlogin" > /etc/zsh/zlogin && \
+	echo "source /etc/zsh/prezto/runcoms/zlogout" > /etc/zsh/zlogout && \
+	echo "source /etc/zsh/prezto/runcoms/zshenv" > /etc/zsh/zshenv && \
+	echo "source /etc/zsh/prezto/runcoms/zpreztorc" >> /etc/zsh/zshrc && \
+	echo "source /etc/zsh/prezto/runcoms/zshrc" >> /etc/zsh/zshrc && \
+	echo "source /etc/zsh/prezto/runcoms/zprofile" >> /etc/zsh/zprofile && \
+	echo "ZPREZTODIR=/etc/zsh/prezto" >> "/etc/zsh/zshrc" && \
+	echo "source \${ZPREZTODIR}/init.zsh" >> "/etc/zsh/zshrc" && \
+	sed -ri "s/theme 'sorin'/theme 'skwp'/g" \
+		/etc/zsh/prezto/runcoms/zpreztorc && \
+	sed -ri "s/'prompt'/'prompt' 'syntax-highlighting' \
+		'history-substring-search'/g" /etc/zsh/prezto/runcoms/zpreztorc
 
-# Configure prezto.
-RUN sed -ri "s/theme 'sorin'/theme 'skwp'/g" /usr/lib/prezto/runcoms/zpreztorc && \
-	sed -ri "s/'prompt'/'prompt' 'syntax-highlighting' 'history-substring-search'/g" /usr/lib/prezto/runcoms/zpreztorc
+# Install fzf.
+RUN git clone --branch 0.18.0 --depth 1 https://github.com/junegunn/fzf.git \
+		/tmp/fzf && \
+	/tmp/fzf/install --bin && \
+	cp /tmp/fzf/bin/* /usr/local/bin && \
+	mkdir -p /usr/share/fzf/ && \
+	cp /tmp/fzf/shell/*.zsh /usr/share/fzf/ && \
+	cp /tmp/fzf/plugin/fzf.vim /usr/share/nvim/runtime/autoload && \
+	rm -rf /tmp/fzf && \
+	echo "source /usr/share/fzf/key-bindings.zsh" >> /etc/zsh/zshrc && \
+	echo "source /usr/share/fzf/completion.zsh" >> /etc/zsh/zshrc && \
+	echo "export FZF_DEFAULT_OPTS='--height 40% --reverse --border'" \
+		>> /etc/zsh/zshrc
 
-# Install gosu.
-RUN curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/1.11/gosu-amd64" && \
-	chmod +x /usr/local/bin/gosu
+# Install Neovim plugin manager.
+RUN mkdir -p /usr/share/nvim/runtime/autoload && \
+	mkdir -p /usr/share/nvim/runtime/plugged && \
+	curl -sfLo /usr/share/nvim/runtime/autoload/plug.vim --create-dirs \
+		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Install neovim configuration.
 COPY files/neovim_config /usr/share/nvim/sysinit.vim
 
-# Install neovim plugins.
-RUN nvim +PlugInstall +UpdateRemotePlugins +qall &> /dev/null && \
-	find /usr/share/nvim/plugged -type d ! -wholename "*/.git*" -exec chmod o+rx {} \; && \
-	find /usr/share/nvim/plugged -type f ! -wholename "*/.git*" -exec chmod o+r {} \;
+# Install Neovim plugins.
+RUN nvim --headless +PlugInstall +UpdateRemotePlugins +qall 2> /dev/null
+
+# Install tmux configuration.
+COPY files/tmux.conf /etc/tmux.conf
 
 # Install entrypoint script.
 COPY files/entrypoint.sh /usr/local/bin
