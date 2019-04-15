@@ -188,4 +188,4 @@ xmap <C-S-Down> <Plug>(textmanip-move-down)
 xmap <C-S-Up> <Plug>(textmanip-move-up)
 xmap <C-S-Left> <Plug>(textmanip-move-left)
 xmap <C-S-Right> <Plug>(textmanip-move-right)
-nmap <F12> :Goyo<CR>
+nmap <F8> :Goyo<CR>
