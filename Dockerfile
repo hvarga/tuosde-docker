@@ -21,7 +21,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 		texlive-full && \
 	rm -rf /var/lib/apt/lists/*
 
-## Configure Neovim as a default system editor.
+# Configure Neovim as a default system editor.
 ENV EDITOR=nvim \
 	VISUAL=nvim
 
