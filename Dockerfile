@@ -17,7 +17,8 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 		tshark cmatrix nodejs cppcheck libcmocka0 qemu qemu-system \
 		rapidjson-dev ranger doxygen p7zip zip lcov gosu ninja-build gettext \
 		libtool libtool-bin autoconf automake pkg-config cmake clang \
-		libclang-dev neovim universal-ctags bear python-neovim ripgrep && \
+		libclang-dev neovim universal-ctags bear python-neovim ripgrep \
+		texlive-full && \
 	rm -rf /var/lib/apt/lists/*
 
 ## Configure Neovim as a default system editor.
