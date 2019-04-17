@@ -18,8 +18,14 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 		rapidjson-dev ranger doxygen p7zip zip lcov gosu ninja-build gettext \
 		libtool libtool-bin autoconf automake pkg-config cmake clang \
 		libclang-dev neovim universal-ctags bear python-neovim ripgrep \
-		texlive-full && \
+		texlive-full locales && \
 	rm -rf /var/lib/apt/lists/*
+
+# Configure system locale.
+RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+    dpkg-reconfigure --frontend=noninteractive locales && \
+    update-locale LANG=en_US.UTF-8
+ENV LANG en_US.UTF-8 LANGUAGE en_US:en LC_ALL en_US.UTF-8
 
 # Configure Neovim as a default system editor.
 ENV EDITOR=nvim \
