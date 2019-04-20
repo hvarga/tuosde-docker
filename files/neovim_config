@@ -74,6 +74,7 @@ Plug 'wellle/visual-split.vim'
 Plug 'conradirwin/vim-bracketed-paste'
 Plug 't9md/vim-textmanip'
 Plug 'junegunn/goyo.vim'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
 call plug#end()
 
 nmap <F6> :TagbarToggle<CR>
