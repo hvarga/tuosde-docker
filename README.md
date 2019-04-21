@@ -36,6 +36,9 @@ Run the following command in a root directory of your C project:
 docker run --privileged --network host -it --rm -e USER_ID=$(id -u) \
 	-e GROUP_ID=$(id -g) -e USER_NAME=$(id -un) -e GROUP_NAME=$(id -gn) \
 	-v /etc/localtime:/etc/localtime -v $(pwd):/opt/workspace \
+	-e DISPLAY="$DISPLAY" -v /tmp/.X11-unix:/tmp/.X11-unix \
+	-e XAUTHORITY=/var/run/xauthority \
+	-v "$HOME"/.Xauthority:/var/run/xauthority \
 	hvarga/tuosde-docker
 ```
 
