@@ -18,7 +18,8 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 		rapidjson-dev ranger doxygen p7zip zip lcov gosu ninja-build gettext \
 		libtool libtool-bin autoconf automake pkg-config cmake clang \
 		libclang-dev neovim universal-ctags bear python-neovim ripgrep \
-		texlive-full pdf-presenter-console locales && \
+		texlive-full pdf-presenter-console locales zathura zathura-pdf-poppler \
+		&& \
 	rm -rf /var/lib/apt/lists/*
 
 # Configure system locale.
