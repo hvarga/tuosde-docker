@@ -30,7 +30,7 @@ docker build -t hvarga/tuosde-docker .
 
 ## Run
 
-Run the following command in a root directory of your C project:
+Run the following command in a root directory of your project:
 
 ```shell
 docker run --privileged --network host -it --rm \
@@ -47,6 +47,6 @@ docker run --privileged --network host -it --rm \
 	hvarga/tuosde-docker
 ```
 
-Above command will start the Docker container which will start a ZSH session
-from which you can start working on your project. The source code of your
-project is mounted on `/opt/workspace`.
+Above command will start the Docker container with a ZSH session from which you
+can start working on your project. Project files are mounted on
+`/opt/workspace` which is also set as a current working directory.
