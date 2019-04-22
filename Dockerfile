@@ -26,7 +26,8 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     dpkg-reconfigure --frontend=noninteractive locales && \
     update-locale LANG=en_US.UTF-8
-ENV LANG en_US.UTF-8 LANGUAGE en_US:en LC_ALL en_US.UTF-8
+ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8 LC_CTYPE=en_US.UTF-8 \
+	LC_MESSAGES=en_US.UTF-8 LC_COLLATE=en_US.UTF-8
 
 # Configure Neovim as a default system editor.
 ENV EDITOR=nvim \
