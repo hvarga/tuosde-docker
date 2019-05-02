@@ -19,7 +19,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 		libtool libtool-bin autoconf automake pkg-config cmake clang \
 		libclang-dev neovim universal-ctags bear python-neovim ripgrep \
 		texlive-full pdf-presenter-console locales zathura zathura-pdf-poppler \
-		sshpass && \
+		sshpass ncdu && \
 	rm -rf /var/lib/apt/lists/*
 
 # Configure system locale.
