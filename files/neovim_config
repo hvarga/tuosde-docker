@@ -53,7 +53,7 @@ call plug#begin('/usr/share/nvim/runtime/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-fugitive'
-Plug 'bronson/vim-trailing-whitespace'
+Plug 'ntpeters/vim-better-whitespace'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
 Plug 'dyng/ctrlsf.vim'
