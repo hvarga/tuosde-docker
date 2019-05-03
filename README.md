@@ -44,6 +44,7 @@ docker run --privileged --network host -it --rm \
 	-v $(pwd):/opt/workspace \
 	-v /tmp/.X11-unix:/tmp/.X11-unix \
 	-v "$HOME"/.Xauthority:/var/run/xauthority \
+	-v "$HOME"/.gitconfig:/etc/gitconfig \
 	hvarga/tuosde-docker
 ```
 
