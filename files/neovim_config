@@ -77,6 +77,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'lervag/vimtex'
+Plug 'rhysd/git-messenger.vim'
 call plug#end()
 
 nmap <F6> :TagbarToggle<CR>
