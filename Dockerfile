@@ -83,6 +83,15 @@ RUN mkdir -p /usr/share/nvim/runtime/autoload && \
 	curl -sfLo /usr/share/nvim/runtime/autoload/plug.vim --create-dirs \
 		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+# Install Go.
+RUN curl -SsL \
+		https://dl.google.com/go/go1.12.4.linux-amd64.tar.gz \
+		-o /tmp/go.tar.gz && \
+	tar -C /usr/local -xzf /tmp/go.tar.gz && \
+	rm -rf /tmp/go.tar.gz
+
+ENV PATH="/usr/local/go/bin:${PATH}"
+
 # Install neovim configuration.
 COPY files/neovim_config /usr/share/nvim/sysinit.vim
 
