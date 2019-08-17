@@ -38,15 +38,6 @@ ENV LANG=en_US.UTF-8 \
 ENV EDITOR=nvim \
 	VISUAL=nvim
 
-# Install ccls.
-RUN git clone --depth=1 --recursive https://github.com/MaskRay/ccls \
-		/tmp/ccls && \
-	cd /tmp/ccls && \
-	cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release && \
-	cmake --build Release && \
-	cp Release/ccls /usr/bin && \
-	rm -rf /tmp/ccls
-
 # Install prezto.
 RUN	git clone --recursive https://github.com/sorin-ionescu/prezto.git \
 		/etc/zsh/prezto && \
