@@ -76,6 +76,8 @@ Plug 'gcmt/taboo.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'lervag/wiki.vim'
 Plug 'lervag/wiki-ft.vim'
+Plug 'inside/vim-search-pulse'
+Plug 'RRethy/vim-illuminate'
 call plug#end()
 
 nmap <F6> :TagbarToggle<CR>
@@ -128,3 +130,7 @@ let g:netrw_browse_split = 3
 let g:netrw_altv = 1
 
 let g:wiki_root = '/opt/workspace'
+
+let g:vim_search_pulse_duration = 200
+
+hi illuminatedWord cterm=underline gui=underline
