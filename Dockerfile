@@ -19,7 +19,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 		libtool libtool-bin autoconf automake pkg-config cmake clang \
 		libclang-dev neovim universal-ctags bear python-neovim ripgrep \
 		texlive-full pdf-presenter-console locales zathura zathura-pdf-poppler \
-		sshpass ncdu && \
+		sshpass ncdu pandoc taskwarrior timewarrior && \
 	rm -rf /var/lib/apt/lists/*
 
 # Configure system locale.
@@ -82,6 +82,14 @@ RUN curl -SsL \
 	rm -rf /tmp/go.tar.gz
 
 ENV PATH="/usr/local/go/bin:${PATH}"
+
+# Install taskwarrior configuration.
+RUN mkdir /etc/taskwarrior
+COPY files/taskrc /etc/taskwarrior
+ENV TASKRC=/etc/taskwarrior/taskrc
+
+# Configure database path for timewarrior.
+ENV TIMEWARRIORDB=/opt/workspace/.timewarrior
 
 # Install neovim configuration.
 COPY files/neovim_config /usr/share/nvim/sysinit.vim

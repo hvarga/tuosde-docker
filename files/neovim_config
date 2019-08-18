@@ -74,6 +74,8 @@ Plug 'rhysd/git-messenger.vim'
 Plug 'tpope/vim-vinegar'
 Plug 'gcmt/taboo.vim'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'lervag/wiki.vim'
+Plug 'lervag/wiki-ft.vim'
 call plug#end()
 
 nmap <F6> :TagbarToggle<CR>
@@ -124,3 +126,5 @@ nmap <F8> :Goyo<CR>
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 3
 let g:netrw_altv = 1
+
+let g:wiki_root = '/opt/workspace'
