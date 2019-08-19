@@ -144,6 +144,7 @@ let g:gen_tags#use_cache_dir = 0
 let g:gen_tags#ctags_auto_gen = 1
 let g:gen_tags#gtags_auto_gen = 1
 let g:gen_tags#statusline = 1
+let g:gen_tags#blacklist = split(glob('/usr/share/nvim/runtime/plugged/*'))
 
 let g:scratch_no_mappings = 1
 nmap <F5> <plug>(scratch-insert-reuse)
