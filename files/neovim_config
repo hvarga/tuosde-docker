@@ -136,3 +136,5 @@ let g:wiki_root = '/opt/workspace'
 let g:vim_search_pulse_duration = 200
 
 hi illuminatedWord cterm=underline gui=underline
+
+let g:tagbar_autofocus = 1
