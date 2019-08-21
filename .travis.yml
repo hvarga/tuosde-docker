@@ -7,6 +7,6 @@ script:
   - docker build -t $DOCKER_REPO_SLUG .
 after_success:
   - if [[ "$TRAVIS_BRANCH" = "master" ]]; then
-      docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+      docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
       docker push $DOCKER_REPO_SLUG;
     fi
