@@ -79,6 +79,8 @@ Plug 'lervag/wiki-ft.vim'
 Plug 'inside/vim-search-pulse'
 Plug 'RRethy/vim-illuminate'
 Plug 'mtth/scratch.vim'
+Plug 'xolox/vim-session'
+Plug 'xolox/vim-misc'
 call plug#end()
 
 nmap <F6> :TagbarToggle<CR>
@@ -149,3 +151,10 @@ let g:gen_tags#blacklist = split(glob('/usr/share/nvim/runtime/plugged/*'))
 let g:scratch_no_mappings = 1
 nmap <F5> <plug>(scratch-insert-reuse)
 let g:scratch_persistence_file = '.scratch.vim'
+
+let g:session_directory = '/opt/workspace/.sessions'
+let g:session_verbose_messages = 0
+let g:session_autosave = 'yes'
+let g:session_autosave_to = 'default'
+let g:session_autoload = 'yes'
+let g:session_command_aliases = 1
