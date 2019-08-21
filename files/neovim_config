@@ -56,7 +56,6 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
 Plug 'easymotion/vim-easymotion'
-Plug 'scrooloose/syntastic'
 Plug 'kshenoy/vim-signature'
 Plug 'sjl/badwolf'
 Plug 'farmergreg/vim-lastplace'
@@ -84,29 +83,16 @@ Plug 'xolox/vim-misc'
 call plug#end()
 
 nmap <F6> :TagbarToggle<CR>
+
 colorscheme badwolf
+
 set signcolumn=yes
+
 nnoremap ,c :call NERDComment(0,"toggle")<CR>
 vnoremap ,c :call NERDComment(0,"toggle")<CR>
+
 let g:EasyMotion_off_screen_search = 0
 let g:EasyMotion_verbose = 0
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_check_on_open = 1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-function! ToggleSyntastic()
-    for i in range(1, winnr('$'))
-        let bnum = winbufnr(i)
-        if getbufvar(bnum, '&buftype') == 'quickfix'
-            lclose
-            return
-        endif
-    endfor
-    SyntasticCheck
-endfunction
-nnoremap <F7> :call ToggleSyntastic()<CR>
 
 nmap <Leader>f :GFiles<CR>
 nmap <Leader>F :Files<CR>
