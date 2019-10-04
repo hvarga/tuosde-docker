@@ -51,8 +51,9 @@ RUN	git clone --recursive https://github.com/sorin-ionescu/prezto.git \
 	echo "source \${ZPREZTODIR}/init.zsh" >> "/etc/zsh/zshrc" && \
 	sed -ri "s/theme 'sorin'/theme 'skwp'/g" \
 		/etc/zsh/prezto/runcoms/zpreztorc && \
-	sed -ri "s/'prompt'/'prompt' 'syntax-highlighting' \
-		'history-substring-search'/g" /etc/zsh/prezto/runcoms/zpreztorc
+	sed -ri '/directory/d' /etc/zsh/prezto/runcoms/zpreztorc && \
+	sed -ri "s/'prompt'/'syntax-highlighting' \
+		'history-substring-search' 'prompt'/g" /etc/zsh/prezto/runcoms/zpreztorc
 
 # Install fzf.
 RUN git clone --branch 0.18.0 --depth 1 https://github.com/junegunn/fzf.git \

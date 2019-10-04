@@ -52,7 +52,6 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 call plug#begin('/usr/share/nvim/runtime/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-fugitive'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'airblade/vim-gitgutter'
@@ -83,8 +82,6 @@ Plug 'mtth/scratch.vim'
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-misc'
 call plug#end()
-
-nmap <F6> :TagbarToggle<CR>
 
 colorscheme badwolf
 
@@ -128,12 +125,11 @@ let g:vim_search_pulse_duration = 200
 
 hi illuminatedWord cterm=underline gui=underline
 
-let g:tagbar_autofocus = 1
-
 let g:gen_tags#use_cache_dir = 0
 let g:gen_tags#ctags_auto_gen = 1
 let g:gen_tags#gtags_auto_gen = 1
 let g:gen_tags#blacklist = split(glob('/usr/share/nvim/runtime/plugged/*'))
+let g:gen_tags#gtags_default_map = 1
 
 let g:scratch_no_mappings = 1
 nmap <F5> <plug>(scratch-insert-reuse)
@@ -157,3 +153,6 @@ nmap <C-Space>a :cs find a <C-R>=expand("<cword>")<CR><CR>
 let g:airline_theme='badwolf'
 let g:airline_symbols_ascii = 1
 let g:airline_extensions = []
+
+" TODO: Map CTRL + SHIFT + [Left | Right] to :movetab to move tabs left or right
+" TODO: Install a better cscope maps
