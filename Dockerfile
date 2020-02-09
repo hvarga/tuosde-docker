@@ -56,7 +56,7 @@ RUN	git clone --recursive https://github.com/sorin-ionescu/prezto.git \
 		'history-substring-search' 'prompt'/g" /etc/zsh/prezto/runcoms/zpreztorc
 
 # Install fzf.
-RUN git clone --branch 0.18.0 --depth 1 https://github.com/junegunn/fzf.git \
+RUN git clone --branch 0.20.0 --depth 1 https://github.com/junegunn/fzf.git \
 		/tmp/fzf && \
 	/tmp/fzf/install --bin && \
 	cp /tmp/fzf/bin/* /usr/local/bin && \
@@ -77,7 +77,7 @@ RUN mkdir -p /usr/share/nvim/runtime/autoload && \
 
 # Install Go.
 RUN curl -SsL \
-		https://dl.google.com/go/go1.12.4.linux-amd64.tar.gz \
+		https://dl.google.com/go/go1.13.7.linux-amd64.tar.gz \
 		-o /tmp/go.tar.gz && \
 	tar -C /usr/local -xzf /tmp/go.tar.gz && \
 	rm -rf /tmp/go.tar.gz
