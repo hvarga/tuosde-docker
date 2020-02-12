@@ -21,10 +21,6 @@ set incsearch
 set hlsearch
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 set wildmenu
-nnoremap d "_d
-vnoremap d "_d
-nnoremap D "_D
-vnoremap D "_D
 xnoremap <expr> p 'pgv"'.v:register.'y'
 map <C-Left> <C-w>h
 map <C-Down> <C-w>j
@@ -77,7 +73,6 @@ Plug 'lervag/wiki.vim'
 Plug 'lervag/wiki-ft.vim'
 Plug 'inside/vim-search-pulse'
 Plug 'RRethy/vim-illuminate'
-Plug 'mtth/scratch.vim'
 call plug#end()
 
 colorscheme badwolf
@@ -93,6 +88,7 @@ let g:EasyMotion_verbose = 0
 nmap <Leader>f :GFiles<CR>
 nmap <Leader>F :Files<CR>
 nmap <Leader>b :Buffers<CR>
+nmap <Leader>B :Gblame<CR>
 nmap <Leader>t :BTags<CR>
 nmap <Leader>T :Tags<CR>
 nmap <Leader>l :BLines<CR>
@@ -108,7 +104,6 @@ xmap <C-S-Down> <Plug>(textmanip-move-down)
 xmap <C-S-Up> <Plug>(textmanip-move-up)
 xmap <C-S-Left> <Plug>(textmanip-move-left)
 xmap <C-S-Right> <Plug>(textmanip-move-right)
-nmap <F8> :Goyo<CR>
 
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 3
@@ -127,10 +122,6 @@ let g:gen_tags#ctags_auto_gen = 1
 let g:gen_tags#gtags_auto_gen = 1
 let g:gen_tags#blacklist = split(glob('/usr/share/nvim/runtime/plugged/*'))
 let g:gen_tags#gtags_default_map = 1
-
-let g:scratch_no_mappings = 1
-nmap <F5> <plug>(scratch-insert-reuse)
-let g:scratch_persistence_file = '.scratch.vim'
 
 nmap <C-Space>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-Space>g :cs find g <C-R>=expand("<cword>")<CR><CR>
