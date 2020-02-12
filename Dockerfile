@@ -1,5 +1,5 @@
-# Start from minimal Debian image.
-FROM debian:buster-slim
+# Start from Ubuntu image.
+FROM ubuntu:19.10
 
 # Author information.
 LABEL maintainer="hrvoje.varga@gmail.com"
