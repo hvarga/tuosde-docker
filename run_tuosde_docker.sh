@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # This script wraps running hvarga/tuosde-docker image since the image requires
 # a lot of environment variables and other system configuration files to work
