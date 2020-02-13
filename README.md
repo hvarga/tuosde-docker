@@ -30,22 +30,23 @@ docker build -t hvarga/tuosde-docker .
 
 ## Run
 
-Run the following command in a root directory of your project:
+Install the shell script needed for running `hvarga/tuosde-docker` Docker image.
+
+```
+sudo wget \
+	https://raw.githubusercontent.com/hvarga/tuosde-docker/master/run_tuosde_docker.sh \
+	-O /usr/local/bin/run_tuosde_docker.sh
+```
+
+In case of updates, the same command can also be used to update the already
+installed `run_tuosde_docker.sh` script with the newer version from the
+repository.
+
+When script is installed, run the following command in a root directory of your
+project:
 
 ```shell
-docker run --privileged --network host -it --rm \
-	-e USER_ID=$(id -u) \
-	-e GROUP_ID=$(id -g) \
-	-e USER_NAME=$(id -un) \
-	-e GROUP_NAME=$(id -gn) \
-	-e DISPLAY="$DISPLAY" \
-	-e XAUTHORITY=/var/run/xauthority \
-	-v /etc/localtime:/etc/localtime \
-	-v $(pwd):/opt/workspace \
-	-v /tmp/.X11-unix:/tmp/.X11-unix \
-	-v "$HOME"/.Xauthority:/var/run/xauthority \
-	-v "$HOME"/.gitconfig:/etc/gitconfig \
-	hvarga/tuosde-docker
+run_tuosde_docker.sh
 ```
 
 Above command will start the Docker container with a ZSH session from which you
