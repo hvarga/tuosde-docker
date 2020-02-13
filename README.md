@@ -36,9 +36,10 @@ Install the shell script needed for running `hvarga/tuosde-docker` Docker image.
 sudo wget \
 	https://raw.githubusercontent.com/hvarga/tuosde-docker/master/run_tuosde_docker.sh \
 	-O /usr/local/bin/run_tuosde_docker.sh
+sudo chmod +x /usr/local/bin/run_tuosde_docker.sh
 ```
 
-In case of updates, the same command can also be used to update the already
+In case of updates, the same commands can also be used to update the already
 installed `run_tuosde_docker.sh` script with the newer version from the
 repository.
 
