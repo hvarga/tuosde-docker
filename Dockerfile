@@ -66,6 +66,8 @@ RUN git clone --branch 0.20.0 --depth 1 https://github.com/junegunn/fzf.git \
 	rm -rf /tmp/fzf && \
 	echo "source /usr/share/fzf/key-bindings.zsh" >> /etc/zsh/zshrc && \
 	echo "source /usr/share/fzf/completion.zsh" >> /etc/zsh/zshrc && \
+	echo "export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'" \
+		>> /etc/zsh/zshrc && \
 	echo "export FZF_DEFAULT_OPTS='--height 40% --reverse --border'" \
 		>> /etc/zsh/zshrc
 

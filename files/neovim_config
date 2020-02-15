@@ -92,7 +92,7 @@ nmap <Leader>T :Tags<CR>
 nmap <Leader>l :BLines<CR>
 nmap <Leader>L :Lines<CR>
 nmap <Leader>' :Marks<CR>
-nmap <Leader>a :Ag<Space>
+nmap <Leader>s :Rg<Space>
 nmap <Leader>H :Helptags!<CR>
 nmap <Leader>C :Commits<CR>
 nmap <Leader>c :BCommits<CR>
