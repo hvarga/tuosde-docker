@@ -70,6 +70,7 @@ Plug 'lervag/wiki.vim'
 Plug 'lervag/wiki-ft.vim'
 Plug 'inside/vim-search-pulse'
 Plug 'RRethy/vim-illuminate'
+Plug 'frazrepo/vim-rainbow'
 call plug#end()
 
 colorscheme badwolf
@@ -131,6 +132,8 @@ nmap <C-Space>a :cs find a <C-R>=expand("<cword>")<CR><CR>
 let g:airline_theme='badwolf'
 let g:airline_symbols_ascii = 1
 let g:airline_extensions = []
+
+au FileType c,cpp call rainbow#load()
 
 " TODO: Map CTRL + SHIFT + [Left | Right] to :movetab to move tabs left or right
 " TODO: Install a better cscope maps
