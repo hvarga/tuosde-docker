@@ -71,6 +71,7 @@ Plug 'lervag/wiki-ft.vim'
 Plug 'inside/vim-search-pulse'
 Plug 'RRethy/vim-illuminate'
 Plug 'frazrepo/vim-rainbow'
+Plug 'troydm/easytree.vim'
 call plug#end()
 
 colorscheme badwolf
@@ -103,11 +104,8 @@ xmap <C-S-Up> <Plug>(textmanip-move-up)
 xmap <C-S-Left> <Plug>(textmanip-move-left)
 xmap <C-S-Right> <Plug>(textmanip-move-right)
 
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 3
-let g:netrw_altv = 1
-let g:netrw_winsize=20
-nnoremap <S-Tab> :Lexplore<CR>
+nnoremap <S-Tab> :EasyTreeToggle<CR>
+let g:easytree_use_plus_and_minus = 1
 
 let g:wiki_root = '/opt/workspace'
 
