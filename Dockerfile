@@ -11,7 +11,7 @@ ENV TERM xterm-256color
 # Install all other packages.
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 		curl apt-transport-https build-essential wget git-core unzip socat \
-		python less man-db zsh tmate asciinema graphviz jq htop mc tmux cloc \
+		python less man-db zsh asciinema graphviz jq htop mc tmux cloc \
 		rsync tree valgrind cgdb calcurse netcat strace ltrace tmuxinator \
 		silversearcher-ag upx openssh-client cscope shellcheck glances lsof \
 		tshark cmatrix nodejs cppcheck libcmocka0 qemu qemu-system \
@@ -37,6 +37,13 @@ ENV LANG=en_US.UTF-8 \
 # Configure Neovim as a default system editor.
 ENV EDITOR=nvim \
 	VISUAL=nvim
+
+# Install tmate.
+RUN wget \
+		https://github.com/tmate-io/tmate/releases/download/2.4.0/tmate-2.4.0-static-linux-amd64.tar.xz \
+		-O /tmp/tmate.tar.xz && \
+	tar -C /usr/bin -xvf /tmp/tmate.tar.xz --strip-components=1 && \
+	rm -rf /tmp/tmate.tar.xz
 
 # Install prezto.
 RUN	git clone --recursive https://github.com/sorin-ionescu/prezto.git \
