@@ -13,7 +13,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 		curl apt-transport-https build-essential wget git-core unzip socat \
 		python less man-db zsh asciinema graphviz jq htop mc tmux cloc \
 		rsync tree valgrind cgdb calcurse netcat strace ltrace tmuxinator \
-		silversearcher-ag upx openssh-client cscope shellcheck glances lsof \
+		upx openssh-client cscope shellcheck glances lsof \
 		tshark cmatrix nodejs cppcheck libcmocka0 qemu qemu-system \
 		rapidjson-dev ranger doxygen p7zip zip lcov gosu ninja-build gettext \
 		libtool libtool-bin autoconf automake pkg-config cmake clang \
