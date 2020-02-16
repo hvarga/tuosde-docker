@@ -110,6 +110,11 @@ RUN nvim --headless +PlugInstall +UpdateRemotePlugins +qall 2> /dev/null
 # Install tmux configuration.
 COPY files/tmux.conf /etc/tmux.conf
 
+# Install tmux plugins.
+RUN git clone \
+		https://github.com/tmux-plugins/tpm /usr/share/tmux/plugins/tpm && \
+	/usr/share/tmux/plugins/tpm/bin/install_plugins
+
 # Install entrypoint script.
 COPY files/entrypoint.sh /usr/local/bin
 
