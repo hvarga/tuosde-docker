@@ -64,13 +64,11 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'lervag/vimtex'
 Plug 'tpope/vim-vinegar'
-Plug 'gcmt/taboo.vim'
 Plug 'jsfaint/gen_tags.vim'
 Plug 'lervag/wiki.vim'
 Plug 'lervag/wiki-ft.vim'
 Plug 'inside/vim-search-pulse'
 Plug 'RRethy/vim-illuminate'
-Plug 'frazrepo/vim-rainbow'
 Plug 'troydm/easytree.vim'
 call plug#end()
 
@@ -130,8 +128,6 @@ nmap <C-Space>a :cs find a <C-R>=expand("<cword>")<CR><CR>
 let g:airline_theme='badwolf'
 let g:airline_symbols_ascii = 1
 let g:airline_extensions = []
-
-au FileType c,cpp call rainbow#load()
 
 " TODO: Map CTRL + SHIFT + [Left | Right] to :movetab to move tabs left or right
 " TODO: Install a better cscope maps
