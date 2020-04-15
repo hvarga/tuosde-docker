@@ -54,7 +54,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
 Plug 'easymotion/vim-easymotion'
 Plug 'kshenoy/vim-signature'
-Plug 'sjl/badwolf'
 Plug 'machakann/vim-highlightedyank'
 Plug 'junegunn/fzf.vim'
 Plug 'wellle/visual-split.vim'
@@ -70,9 +69,12 @@ Plug 'lervag/wiki-ft.vim'
 Plug 'inside/vim-search-pulse'
 Plug 'RRethy/vim-illuminate'
 Plug 'troydm/easytree.vim'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'tpope/vim-unimpaired'
 call plug#end()
 
-colorscheme badwolf
+set background=dark
+colorscheme PaperColor
 
 set signcolumn=yes
 
@@ -125,7 +127,7 @@ nmap <C-Space>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <C-Space>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 nmap <C-Space>a :cs find a <C-R>=expand("<cword>")<CR><CR>
 
-let g:airline_theme='badwolf'
+let g:airline_theme='papercolor'
 let g:airline_symbols_ascii = 1
 let g:airline_extensions = []
 
