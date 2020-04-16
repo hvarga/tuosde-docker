@@ -12,8 +12,8 @@ ENV TERM xterm-256color
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 		curl apt-transport-https build-essential wget git-core unzip socat \
 		python less man-db zsh asciinema graphviz jq htop mc tmux cloc \
-		rsync tree valgrind cgdb calcurse netcat strace ltrace tmuxinator \
-		upx openssh-client cscope shellcheck glances lsof \
+		rsync tree valgrind calcurse netcat strace ltrace tmuxinator \
+		upx openssh-client cscope shellcheck glances lsof flex libreadline-dev \
 		tshark cmatrix nodejs cppcheck libcmocka0 qemu qemu-system \
 		rapidjson-dev ranger doxygen p7zip zip lcov gosu ninja-build gettext \
 		libtool libtool-bin autoconf automake pkg-config cmake clang \
@@ -37,6 +37,16 @@ ENV LANG=en_US.UTF-8 \
 # Configure Neovim as a default system editor.
 ENV EDITOR=nvim \
 	VISUAL=nvim
+
+# Build and install cgdb.
+RUN wget https://cgdb.me/files/cgdb-0.7.1.tar.gz -O /tmp/cgdb.tar.gz && \
+    cd /tmp/ && \
+    tar -xvf /tmp/cgdb.tar.gz && \
+    cd cgdb-0.7.1 && \
+    ./configure && \
+    make && \
+    make install && \
+    rm -rf /tmp/cgdb.tar.gz /tmp/cgdb-0.7.1
 
 # Install tmate.
 RUN wget \
