@@ -1,5 +1,5 @@
 # Start from Ubuntu image.
-FROM ubuntu:19.10
+FROM ubuntu:20.04
 
 # Author information.
 LABEL maintainer="hrvoje.varga@gmail.com"
@@ -17,7 +17,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 		tshark cmatrix nodejs cppcheck libcmocka0 qemu qemu-system \
 		rapidjson-dev ranger doxygen p7zip zip lcov gosu ninja-build gettext \
 		libtool libtool-bin autoconf automake pkg-config cmake clang \
-		libclang-dev neovim universal-ctags bear python-neovim ripgrep \
+		libclang-dev neovim universal-ctags bear python3-neovim ripgrep \
 		texlive-full pdf-presenter-console locales zathura zathura-pdf-poppler \
 		sshpass ncdu pandoc taskwarrior timewarrior global sudo plantuml && \
 	rm -rf /var/lib/apt/lists/*
@@ -124,6 +124,9 @@ COPY files/tmux.conf /etc/tmux.conf
 RUN git clone \
 		https://github.com/tmux-plugins/tpm /usr/share/tmux/plugins/tpm && \
 	/usr/share/tmux/plugins/tpm/bin/install_plugins
+
+# Add /usr/local/lib to ld path.
+ENV LD_LIBRARY_PATH="/usr/local/lib:{$LD_LIBRARY_PATH}"
 
 # Install entrypoint script.
 COPY files/entrypoint.sh /usr/local/bin

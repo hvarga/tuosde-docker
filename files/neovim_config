@@ -68,7 +68,6 @@ Plug 'lervag/wiki.vim'
 Plug 'lervag/wiki-ft.vim'
 Plug 'inside/vim-search-pulse'
 Plug 'RRethy/vim-illuminate'
-Plug 'troydm/easytree.vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'tpope/vim-unimpaired'
 call plug#end()
@@ -103,9 +102,6 @@ xmap <C-S-Down> <Plug>(textmanip-move-down)
 xmap <C-S-Up> <Plug>(textmanip-move-up)
 xmap <C-S-Left> <Plug>(textmanip-move-left)
 xmap <C-S-Right> <Plug>(textmanip-move-right)
-
-nnoremap <S-Tab> :EasyTreeToggle<CR>
-let g:easytree_use_plus_and_minus = 1
 
 let g:wiki_root = '/opt/workspace'
 
