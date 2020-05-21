@@ -54,17 +54,14 @@ Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
 Plug 'easymotion/vim-easymotion'
 Plug 'kshenoy/vim-signature'
-Plug 'machakann/vim-highlightedyank'
 Plug 'junegunn/fzf.vim'
 Plug 'wellle/visual-split.vim'
 Plug 'conradirwin/vim-bracketed-paste'
 Plug 't9md/vim-textmanip'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
-Plug 'lervag/vimtex'
 Plug 'tpope/vim-vinegar'
 Plug 'lervag/wiki.vim'
 Plug 'lervag/wiki-ft.vim'
-Plug 'inside/vim-search-pulse'
 Plug 'RRethy/vim-illuminate'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'tpope/vim-unimpaired'
@@ -103,9 +100,7 @@ xmap <C-S-Right> <Plug>(textmanip-move-right)
 
 let g:wiki_root = '/opt/workspace'
 
-let g:vim_search_pulse_duration = 200
-
-hi illuminatedWord cterm=underline gui=underline
+hi link illuminatedWord Visual
 
 nmap <C-Space>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-Space>g :cs find g <C-R>=expand("<cword>")<CR><CR>
