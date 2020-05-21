@@ -60,10 +60,8 @@ Plug 'wellle/visual-split.vim'
 Plug 'conradirwin/vim-bracketed-paste'
 Plug 't9md/vim-textmanip'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
-Plug 'dhruvasagar/vim-table-mode'
 Plug 'lervag/vimtex'
 Plug 'tpope/vim-vinegar'
-Plug 'jsfaint/gen_tags.vim'
 Plug 'lervag/wiki.vim'
 Plug 'lervag/wiki-ft.vim'
 Plug 'inside/vim-search-pulse'
@@ -108,12 +106,6 @@ let g:wiki_root = '/opt/workspace'
 let g:vim_search_pulse_duration = 200
 
 hi illuminatedWord cterm=underline gui=underline
-
-let g:gen_tags#use_cache_dir = 0
-let g:gen_tags#ctags_auto_gen = 1
-let g:gen_tags#gtags_auto_gen = 1
-let g:gen_tags#blacklist = split(glob('/usr/share/nvim/runtime/plugged/*'))
-let g:gen_tags#gtags_default_map = 1
 
 nmap <C-Space>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-Space>g :cs find g <C-R>=expand("<cword>")<CR><CR>
