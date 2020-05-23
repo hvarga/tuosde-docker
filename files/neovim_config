@@ -64,7 +64,6 @@ Plug 'lervag/wiki.vim'
 Plug 'lervag/wiki-ft.vim'
 Plug 'RRethy/vim-illuminate'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'tpope/vim-unimpaired'
 Plug 'jsfaint/gen_tags.vim'
 call plug#end()
 
@@ -120,3 +119,5 @@ let g:gen_tags#ctags_auto_gen = 1
 let g:gen_tags#gtags_auto_gen = 1
 let g:gen_tags#blacklist = split(glob('/usr/share/nvim/runtime/plugged/*'))
 let g:gen_tags#gtags_default_map = 1
+
+nnoremap cob :set background=<C-R>=&background == 'dark' ? 'light' : 'dark'<CR><CR>
