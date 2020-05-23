@@ -77,21 +77,6 @@ vnoremap ,c :call NERDComment(0,"toggle")<CR>
 let g:EasyMotion_off_screen_search = 0
 let g:EasyMotion_verbose = 0
 
-nmap <Leader>f :GFiles<CR>
-nmap <Leader>F :Files<CR>
-nmap <Leader>b :Buffers<CR>
-nmap <Leader>B :Gblame<CR>
-nmap <Leader>t :BTags<CR>
-nmap <Leader>T :Tags<CR>
-nmap <Leader>l :BLines<CR>
-nmap <Leader>L :Lines<CR>
-nmap <Leader>' :Marks<CR>
-nmap <Leader>s :Rg<Space>
-nmap <Leader>H :Helptags!<CR>
-nmap <Leader>C :Commits<CR>
-nmap <Leader>c :BCommits<CR>
-nmap <Leader>M :Maps<CR>
-xmap <C-s> <Plug>(Visual-Split-VSSplitAbove)
 xmap <C-S-Down> <Plug>(textmanip-move-down)
 xmap <C-S-Up> <Plug>(textmanip-move-up)
 xmap <C-S-Left> <Plug>(textmanip-move-left)
@@ -101,13 +86,17 @@ let g:wiki_root = '/opt/workspace'
 
 hi link illuminatedWord Visual
 
-nmap <C-Space>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-Space>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-Space>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-Space>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <C-Space>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nmap <C-Space>d :cs find d <C-R>=expand("<cword>")<CR><CR>
-nmap <C-Space>a :cs find a <C-R>=expand("<cword>")<CR><CR>
+let g:fzf_preview_window = ''
+nmap <C-Space>f :GFiles<CR>
+nmap <C-Space>F :Files<CR>
+nmap <C-Space>b :Gblame<CR>
+nmap <C-Space>t :BTags<CR>
+nmap <C-Space>T :Tags<CR>
+nmap <C-Space>l :BLines<CR>
+nmap <C-Space>m :Marks<CR>
+nmap <C-Space>s :Rg<Space>
+nmap <C-Space>c :BCommits<CR>
+nmap <C-Space>C :Commits<CR>
 
 let g:airline_theme='papercolor'
 let g:airline_symbols_ascii = 1
