@@ -65,6 +65,7 @@ Plug 'lervag/wiki-ft.vim'
 Plug 'RRethy/vim-illuminate'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'tpope/vim-unimpaired'
+Plug 'jsfaint/gen_tags.vim'
 call plug#end()
 
 set background=dark
@@ -114,5 +115,8 @@ let g:airline_theme='papercolor'
 let g:airline_symbols_ascii = 1
 let g:airline_extensions = []
 
-" TODO: Map CTRL + SHIFT + [Left | Right] to :movetab to move tabs left or right
-" TODO: Install a better cscope maps
+let g:gen_tags#use_cache_dir = 0
+let g:gen_tags#ctags_auto_gen = 1
+let g:gen_tags#gtags_auto_gen = 1
+let g:gen_tags#blacklist = split(glob('/usr/share/nvim/runtime/plugged/*'))
+let g:gen_tags#gtags_default_map = 1
