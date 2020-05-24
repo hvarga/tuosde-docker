@@ -10,9 +10,9 @@ ENV TERM xterm-256color
 
 # Install all other packages.
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-		curl apt-transport-https build-essential wget git-core unzip socat \
-		python less man-db zsh asciinema graphviz jq htop mc tmux cloc \
-		rsync tree valgrind calcurse netcat strace ltrace tmuxinator \
+		ca-certificates curl apt-transport-https build-essential wget git-core \
+		unzip socat python less man-db zsh asciinema graphviz jq htop mc tmux \
+		cloc rsync tree valgrind calcurse netcat strace ltrace tmuxinator \
 		upx openssh-client cscope shellcheck glances lsof flex libreadline-dev \
 		tshark cmatrix nodejs cppcheck libcmocka0 qemu qemu-system \
 		rapidjson-dev ranger doxygen p7zip zip lcov gosu ninja-build gettext \
