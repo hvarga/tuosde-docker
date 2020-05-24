@@ -102,10 +102,10 @@ let g:airline_theme='papercolor'
 let g:airline_symbols_ascii = 1
 let g:airline_extensions = []
 
+let g:loaded_gentags#gtags = 1
 let g:gen_tags#use_cache_dir = 0
 let g:gen_tags#ctags_auto_gen = 1
-let g:gen_tags#gtags_auto_gen = 1
+let g:gen_tags#ctags_auto_update = 1
 let g:gen_tags#blacklist = split(glob('/usr/share/nvim/runtime/plugged/*'))
-let g:gen_tags#gtags_default_map = 1
 
 nnoremap cob :set background=<C-R>=&background == 'dark' ? 'light' : 'dark'<CR><CR>
