@@ -64,6 +64,7 @@ Plug 'lervag/wiki-ft.vim'
 Plug 'RRethy/vim-illuminate'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'majutsushi/tagbar'
 call plug#end()
 
 set background=dark
@@ -112,3 +113,7 @@ let g:gutentags_file_list_command = {
 \ }
 
 nnoremap ti :IlluminationToggle<CR>
+
+nnoremap <silent> <S-Tab> :TagbarToggle<CR>
+let g:tagbar_compact = 1
+let g:tagbar_width = 70
