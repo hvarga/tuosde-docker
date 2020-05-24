@@ -110,3 +110,5 @@ let g:gutentags_file_list_command = {
     \ '.git': 'git ls-files',
   \ },
 \ }
+
+nnoremap ti :IlluminationToggle<CR>
