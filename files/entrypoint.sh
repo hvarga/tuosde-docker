@@ -26,4 +26,8 @@ export HOME=/home/$USER_NAME
 export SHELL=/bin/zsh
 touch "/home/$USER_NAME/.zshrc"
 
+mkdir -p /home/$USER_NAME/.ssh
+cp -r /run/ssh/* /home/$USER_NAME/.ssh
+chown -R $USER_NAME:$GROUP_NAME ~/.ssh
+
 exec gosu "$USER_NAME" "/usr/bin/tmux"

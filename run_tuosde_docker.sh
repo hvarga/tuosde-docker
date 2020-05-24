@@ -36,5 +36,6 @@ docker run --privileged --network host -it --rm \
 	-v /tmp/.X11-unix:/tmp/.X11-unix \
 	-v "$HOME"/.Xauthority:/var/run/xauthority \
 	-v "$HOME"/.gitconfig:/etc/gitconfig \
+	-v "$HOME"/.ssh:/run/ssh:ro \
 	-v "$STORAGE_PATH":/opt/storage \
 	hvarga/tuosde-docker
