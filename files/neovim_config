@@ -63,7 +63,7 @@ Plug 'lervag/wiki.vim'
 Plug 'lervag/wiki-ft.vim'
 Plug 'RRethy/vim-illuminate'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'jsfaint/gen_tags.vim'
+Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 
 set background=dark
@@ -102,10 +102,11 @@ let g:airline_theme='papercolor'
 let g:airline_symbols_ascii = 1
 let g:airline_extensions = []
 
-let g:loaded_gentags#gtags = 1
-let g:gen_tags#use_cache_dir = 0
-let g:gen_tags#ctags_auto_gen = 1
-let g:gen_tags#ctags_auto_update = 1
-let g:gen_tags#blacklist = split(glob('/usr/share/nvim/runtime/plugged/*'))
-
 nnoremap cob :set background=<C-R>=&background == 'dark' ? 'light' : 'dark'<CR><CR>
+
+let g:gutentags_generate_on_empty_buffer = 1
+let g:gutentags_file_list_command = {
+  \ 'markers': {
+    \ '.git': 'git ls-files',
+  \ },
+\ }
