@@ -20,7 +20,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 		libclang-dev neovim universal-ctags bear python3-neovim ripgrep \
 		texlive-full pdf-presenter-console locales zathura zathura-pdf-poppler \
 		sshpass ncdu pandoc taskwarrior timewarrior global sudo plantuml \
-		python3-virtualenv python3-dev clang-tidy gcc-multilib && \
+		python3-virtualenv python3-dev clang-tidy gcc-multilib telnet && \
 	rm -rf /var/lib/apt/lists/*
 
 # Configure system locale.
