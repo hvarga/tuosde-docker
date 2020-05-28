@@ -19,7 +19,8 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 		libtool libtool-bin autoconf automake pkg-config cmake clang \
 		libclang-dev neovim universal-ctags bear python3-neovim ripgrep \
 		texlive-full pdf-presenter-console locales zathura zathura-pdf-poppler \
-		sshpass ncdu pandoc taskwarrior timewarrior global sudo plantuml && \
+		sshpass ncdu pandoc taskwarrior timewarrior global sudo plantuml \
+		python3-virtualenv python3-dev clang-tidy gcc-multilib && \
 	rm -rf /var/lib/apt/lists/*
 
 # Configure system locale.
@@ -109,6 +110,16 @@ RUN wget https://cdist2.perforce.com/perforce/r20.1/bin.linux26x86_64/p4v.tgz \
     cd /tmp/ && \
     tar -C /usr/local -xzf /tmp/p4v.tgz --strip-components=1 && \
     rm -rf /tmp/p4v.tgz
+
+# Install Ericsson CodeChecker.
+RUN git clone https://github.com/Ericsson/CodeChecker.git \
+                /opt/codechecker && \
+        cd /opt/codechecker && \
+        git checkout --detach 65aa0c90a4f5d8a1d857e4ef1570045419c65266 && \
+        make venv && \
+        . venv/bin/activate && \
+        make package
+COPY files/codechecker.sh /usr/local/bin/CodeChecker
 
 # Install taskwarrior configuration.
 RUN mkdir /etc/taskwarrior
