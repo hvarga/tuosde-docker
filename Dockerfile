@@ -129,6 +129,17 @@ ENV TASKRC=/etc/taskwarrior/taskrc
 # Configure database path for timewarrior.
 ENV TIMEWARRIORDB=/opt/workspace/.timewarrior
 
+# Install Trilium.
+RUN wget https://github.com/zadam/trilium/releases/download/v0.42.6/trilium-linux-x64-server-0.42.6.tar.xz \
+		-O /tmp/trilium.tar.xz && \
+	cd /tmp && \
+	tar -xf /tmp/trilium.tar.xz && \
+	mv trilium-linux-x64-server /opt/trilium && \
+	rm -rf /tmp/trilium.tar.xz
+COPY files/trilium.sh /opt/trilium
+ENV PATH="/opt/trilium:${PATH}"
+ENV TRILIUM_DATA_DIR=/opt/storage/trilium
+
 # Install neovim configuration.
 COPY files/neovim_config /usr/share/nvim/sysinit.vim
 
