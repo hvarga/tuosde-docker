@@ -52,7 +52,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'airblade/vim-gitgutter'
-Plug 'scrooloose/nerdcommenter'
 Plug 'easymotion/vim-easymotion'
 Plug 'kshenoy/vim-signature'
 Plug 'junegunn/fzf.vim'
@@ -66,15 +65,13 @@ Plug 'RRethy/vim-illuminate'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
+Plug 'tpope/vim-commentary'
 call plug#end()
 
 set background=dark
 colorscheme PaperColor
 
 set signcolumn=yes
-
-nnoremap ,c :call NERDComment(0,"toggle")<CR>
-vnoremap ,c :call NERDComment(0,"toggle")<CR>
 
 let g:EasyMotion_off_screen_search = 0
 let g:EasyMotion_verbose = 0
