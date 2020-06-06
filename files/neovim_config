@@ -59,8 +59,6 @@ Plug 'conradirwin/vim-bracketed-paste'
 Plug 't9md/vim-textmanip'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'tpope/vim-vinegar'
-Plug 'lervag/wiki.vim'
-Plug 'lervag/wiki-ft.vim'
 Plug 'RRethy/vim-illuminate'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'ludovicchabant/vim-gutentags'
@@ -80,8 +78,6 @@ xmap <C-S-Down> <Plug>(textmanip-move-down)
 xmap <C-S-Up> <Plug>(textmanip-move-up)
 xmap <C-S-Left> <Plug>(textmanip-move-left)
 xmap <C-S-Right> <Plug>(textmanip-move-right)
-
-let g:wiki_root = '/opt/workspace'
 
 hi link illuminatedWord Visual
 
