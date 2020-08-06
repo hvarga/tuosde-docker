@@ -19,7 +19,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 		libtool libtool-bin autoconf automake pkg-config cmake clang \
 		libclang-dev neovim universal-ctags bear python3-neovim ripgrep \
 		texlive-full pdf-presenter-console locales zathura zathura-pdf-poppler \
-		sshpass ncdu pandoc taskwarrior timewarrior global sudo plantuml \
+		sshpass ncdu pandoc global sudo plantuml \
 		python3-virtualenv python3-dev clang-tidy gcc-multilib telnet && \
 	rm -rf /var/lib/apt/lists/*
 
@@ -120,14 +120,6 @@ RUN git clone https://github.com/Ericsson/CodeChecker.git \
         . venv/bin/activate && \
         make package
 COPY files/codechecker.sh /usr/local/bin/CodeChecker
-
-# Install taskwarrior configuration.
-RUN mkdir /etc/taskwarrior
-COPY files/taskrc /etc/taskwarrior
-ENV TASKRC=/etc/taskwarrior/taskrc
-
-# Configure database path for timewarrior.
-ENV TIMEWARRIORDB=/opt/workspace/.timewarrior
 
 # Install Trilium.
 RUN wget https://github.com/zadam/trilium/releases/download/v0.42.6/trilium-linux-x64-server-0.42.6.tar.xz \
