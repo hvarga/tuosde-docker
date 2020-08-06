@@ -30,4 +30,8 @@ mkdir -p /home/$USER_NAME/.ssh
 cp -r /run/ssh/* /home/$USER_NAME/.ssh
 chown -R $USER_NAME:$GROUP_NAME ~/.ssh
 
-exec gosu "$USER_NAME" "/usr/bin/tmux"
+PROCESS="/usr/bin/tmux"
+if [ -f ".tmuxinator.yml" ]; then
+	PROCESS="/usr/bin/tmuxinator"
+fi
+exec gosu "$USER_NAME" $PROCESS
