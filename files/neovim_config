@@ -62,9 +62,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'RRethy/vim-illuminate'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-commentary'
-Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'ervandew/supertab'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
@@ -111,14 +109,6 @@ let g:gutentags_file_list_command = {
 \ }
 
 nnoremap ti :IlluminationToggle<CR>
-
-nnoremap <silent> <S-Tab> :TagbarToggle<CR>
-let g:tagbar_compact = 1
-
-let g:yankstack_map_keys = 0
-nmap <leader>p <Plug>yankstack_substitute_older_paste
-nmap <leader>P <Plug>yankstack_substitute_newer_paste
-let g:tagbar_width = 70
 
 let g:SuperTabCrMapping = 1
 
