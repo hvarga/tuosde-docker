@@ -66,6 +66,7 @@ Plug 'tpope/vim-commentary'
 Plug 'ervandew/supertab'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
+Plug 'svermeulen/vim-cutlass'
 call plug#end()
 
 set background=dark
