@@ -66,6 +66,8 @@ Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-commentary'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'ervandew/supertab'
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim'
 call plug#end()
 
 set background=dark
@@ -119,3 +121,5 @@ nmap <leader>P <Plug>yankstack_substitute_newer_paste
 let g:tagbar_width = 70
 
 let g:SuperTabCrMapping = 1
+
+let g:ranger_replace_netrw = 1
