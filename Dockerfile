@@ -132,6 +132,14 @@ COPY files/trilium.sh /opt/trilium
 ENV PATH="/opt/trilium:${PATH}"
 ENV TRILIUM_DATA_DIR=/opt/storage/trilium
 
+# Install nnn.
+RUN wget https://github.com/jarun/nnn/releases/download/v3.3/nnn_3.3-1_ubuntu20.04.amd64.deb \
+	-O /tmp/nnn.deb && \
+    dpkg -i /tmp/nnn.deb && \
+    rm -rf /tmp/nnn.deb
+ENV NNN_USE_EDITOR=1
+RUN echo 'alias nnn="nnn -c"' >> /etc/zsh/zshrc
+
 # Install neovim configuration.
 COPY files/neovim_config /usr/share/nvim/sysinit.vim
 

@@ -64,9 +64,9 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-commentary'
 Plug 'ervandew/supertab'
-Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'svermeulen/vim-cutlass'
+Plug 'mcchrish/nnn.vim'
 call plug#end()
 
 set background=dark
@@ -113,4 +113,9 @@ nnoremap ti :IlluminationToggle<CR>
 
 let g:SuperTabCrMapping = 1
 
-let g:ranger_replace_netrw = 1
+let g:nnn#command = 'nnn -c'
+let g:nnn#action = {
+      \ '<c-t>': 'tab split',
+      \ '<c-x>': 'split',
+      \ '<c-v>': 'vsplit' }
+let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
