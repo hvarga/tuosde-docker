@@ -113,6 +113,9 @@ nnoremap ti :IlluminationToggle<CR>
 
 let g:SuperTabCrMapping = 1
 
+let g:nnn#replace_netrw = 1
+let g:nnn#set_default_mappings = 0
+nnoremap <leader>f :NnnPicker '%:p:h'<CR>
 let g:nnn#command = 'nnn -c'
 let g:nnn#action = {
       \ '<c-t>': 'tab split',
