@@ -68,6 +68,7 @@ Plug 'rbgrouleff/bclose.vim'
 Plug 'svermeulen/vim-cutlass'
 Plug 'mcchrish/nnn.vim'
 Plug 'rhysd/git-messenger.vim'
+Plug 'lifepillar/vim-cheat40'
 call plug#end()
 
 set background=dark
