@@ -69,6 +69,8 @@ Plug 'svermeulen/vim-cutlass'
 Plug 'mcchrish/nnn.vim'
 Plug 'rhysd/git-messenger.vim'
 Plug 'szw/vim-maximizer'
+Plug 'inkarkat/vim-ingo-library'
+Plug 'inkarkat/vim-mark'
 call plug#end()
 
 set background=dark
@@ -129,3 +131,5 @@ nnoremap x d
 xnoremap x d
 
 let g:better_whitespace_enabled=1
+
+let g:mwDefaultHighlightingPalette = 'maximum'
