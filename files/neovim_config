@@ -124,3 +124,5 @@ let g:nnn#action = {
       \ '<c-x>': 'split',
       \ '<c-v>': 'vsplit' }
 let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
+
+let g:better_whitespace_enabled=1
