@@ -125,4 +125,7 @@ let g:nnn#action = {
       \ '<c-v>': 'vsplit' }
 let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
 
+nnoremap x d
+xnoremap x d
+
 let g:better_whitespace_enabled=1
