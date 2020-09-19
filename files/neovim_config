@@ -72,6 +72,7 @@ Plug 'szw/vim-maximizer'
 Plug 'inkarkat/vim-ingo-library'
 Plug 'inkarkat/vim-mark'
 Plug 'farmergreg/vim-lastplace'
+Plug 'rhysd/committia.vim'
 call plug#end()
 
 set background=dark
