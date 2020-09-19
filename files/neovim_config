@@ -71,6 +71,7 @@ Plug 'rhysd/git-messenger.vim'
 Plug 'szw/vim-maximizer'
 Plug 'inkarkat/vim-ingo-library'
 Plug 'inkarkat/vim-mark'
+Plug 'farmergreg/vim-lastplace'
 call plug#end()
 
 set background=dark
