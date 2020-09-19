@@ -23,6 +23,8 @@ if [ "$#" -eq 1 ]; then
 	STORAGE_PATH="$1"
 fi
 mkdir "$STORAGE_PATH" 2> /dev/null
+mkdir "$STORAGE_PATH"/home 2> /dev/null
+mkdir "$STORAGE_PATH"/data 2> /dev/null
 
 docker run --privileged --network host -it --rm \
 	-e USER_ID=$(id -u) \
@@ -37,5 +39,6 @@ docker run --privileged --network host -it --rm \
 	-v "$HOME"/.Xauthority:/var/run/xauthority \
 	-v "$HOME"/.gitconfig:/etc/gitconfig \
 	-v "$HOME"/.ssh:/run/ssh:ro \
-	-v "$STORAGE_PATH":/opt/storage \
+	-v "$STORAGE_PATH"/home:/home/$USER_NAME \
+	-v "$STORAGE_PATH"/data:/opt/data \
 	hvarga/tuosde-docker
