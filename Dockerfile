@@ -97,7 +97,7 @@ RUN mkdir -p /usr/share/nvim/runtime/autoload && \
 
 # Install Go.
 RUN curl -SsL \
-		https://dl.google.com/go/go1.13.7.linux-amd64.tar.gz \
+		https://dl.google.com/go/go1.15.2.linux-amd64.tar.gz \
 		-o /tmp/go.tar.gz && \
 	tar -C /usr/local -xzf /tmp/go.tar.gz && \
 	rm -rf /tmp/go.tar.gz
