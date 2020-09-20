@@ -73,6 +73,7 @@ Plug 'inkarkat/vim-ingo-library'
 Plug 'inkarkat/vim-mark'
 Plug 'farmergreg/vim-lastplace'
 Plug 'rhysd/committia.vim'
+Plug 'wincent/ferret'
 call plug#end()
 
 set background=dark
@@ -135,3 +136,7 @@ xnoremap x d
 let g:better_whitespace_enabled=1
 
 let g:mwDefaultHighlightingPalette = 'maximum'
+
+let g:FerretMap=0
+nmap <leader>fs <Plug>(FerretAck)
+nmap <leader>fr <Plug>(FerretAcks)
