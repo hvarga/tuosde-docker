@@ -122,7 +122,7 @@ RUN git clone https://github.com/Ericsson/CodeChecker.git \
 COPY files/codechecker.sh /usr/local/bin/CodeChecker
 
 # Install Trilium.
-RUN wget https://github.com/zadam/trilium/releases/download/v0.42.6/trilium-linux-x64-server-0.42.6.tar.xz \
+RUN wget https://github.com/zadam/trilium/releases/download/v0.43.4/trilium-linux-x64-server-0.43.4.tar.xz \
 		-O /tmp/trilium.tar.xz && \
 	cd /tmp && \
 	tar -xf /tmp/trilium.tar.xz && \
@@ -130,7 +130,7 @@ RUN wget https://github.com/zadam/trilium/releases/download/v0.42.6/trilium-linu
 	rm -rf /tmp/trilium.tar.xz
 COPY files/trilium.sh /opt/trilium
 ENV PATH="/opt/trilium:${PATH}"
-ENV TRILIUM_DATA_DIR=/opt/storage/trilium
+ENV TRILIUM_DATA_DIR=/opt/data/trilium
 
 # Install nnn.
 RUN wget https://github.com/jarun/nnn/releases/download/v3.4/nnn_3.4-1_ubuntu20.04.amd64.deb \
