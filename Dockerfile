@@ -11,16 +11,13 @@ ENV TERM xterm-256color
 # Install all other packages.
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 		ca-certificates curl apt-transport-https build-essential wget git-core \
-		unzip socat python less man-db zsh asciinema graphviz jq htop mc tmux \
-		cloc rsync tree valgrind calcurse netcat strace ltrace tmuxinator \
-		upx openssh-client cscope shellcheck glances lsof flex libreadline-dev \
-		tshark cmatrix nodejs cppcheck libcmocka0 qemu qemu-system \
-		rapidjson-dev ranger doxygen p7zip zip lcov gosu ninja-build gettext \
-		libtool libtool-bin autoconf automake pkg-config cmake clang \
-		libclang-dev neovim universal-ctags bear python3-neovim ripgrep \
-		texlive-full pdf-presenter-console locales zathura zathura-pdf-poppler \
-		sshpass ncdu pandoc global sudo plantuml \
-		python3-virtualenv python3-dev clang-tidy gcc-multilib telnet && \
+		unzip python less man-db zsh asciinema htop tmux cloc tree valgrind \
+		strace tmuxinator openssh-client cscope shellcheck lsof flex \
+		libreadline-dev nodejs libcmocka0 rapidjson-dev doxygen p7zip zip lcov \
+		gosu ninja-build gettext libtool libtool-bin autoconf automake \
+		pkg-config cmake clang libclang-dev neovim universal-ctags \
+		python3-neovim ripgrep locales sshpass global sudo python3-virtualenv \
+		python3-dev clang-tidy gcc-multilib telnet && \
 	rm -rf /var/lib/apt/lists/*
 
 # Configure system locale.
@@ -38,16 +35,6 @@ ENV LANG=en_US.UTF-8 \
 # Configure Neovim as a default system editor.
 ENV EDITOR=nvim \
 	VISUAL=nvim
-
-# Build and install cgdb.
-RUN wget https://cgdb.me/files/cgdb-0.7.1.tar.gz -O /tmp/cgdb.tar.gz && \
-    cd /tmp/ && \
-    tar -xvf /tmp/cgdb.tar.gz && \
-    cd cgdb-0.7.1 && \
-    ./configure && \
-    make && \
-    make install && \
-    rm -rf /tmp/cgdb.tar.gz /tmp/cgdb-0.7.1
 
 # Install tmate.
 RUN wget \
@@ -153,9 +140,6 @@ COPY files/tmux.conf /etc/tmux.conf
 RUN git clone \
 		https://github.com/tmux-plugins/tpm /usr/share/tmux/plugins/tpm && \
 	/usr/share/tmux/plugins/tpm/bin/install_plugins
-
-# Add /usr/local/lib to ld path.
-ENV LD_LIBRARY_PATH="/usr/local/lib:{$LD_LIBRARY_PATH}"
 
 # Install entrypoint script.
 COPY files/entrypoint.sh /usr/local/bin
