@@ -9,7 +9,8 @@ LABEL maintainer="hrvoje.varga@gmail.com"
 ENV TERM xterm-256color
 
 # Install all other packages.
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+RUN apt-get update && yes | unminimize && DEBIAN_FRONTEND=noninteractive \
+	apt-get install -y \
 		ca-certificates curl apt-transport-https build-essential wget git-core \
 		unzip python less man-db zsh asciinema htop tmux cloc tree valgrind \
 		strace tmuxinator openssh-client cscope shellcheck lsof flex \
