@@ -13,12 +13,11 @@ RUN apt-get update && yes | unminimize && DEBIAN_FRONTEND=noninteractive \
 	apt-get install -y \
 		ca-certificates curl apt-transport-https build-essential wget git-core \
 		unzip python less man-db zsh asciinema htop tmux cloc tree valgrind \
-		strace tmuxinator openssh-client cscope shellcheck lsof flex \
-		libreadline-dev nodejs libcmocka0 rapidjson-dev doxygen p7zip zip lcov \
-		gosu ninja-build gettext libtool libtool-bin autoconf automake \
-		pkg-config cmake clang libclang-dev neovim universal-ctags \
+		strace tmuxinator openssh-client shellcheck lsof libcmocka0 doxygen \
+		p7zip zip lcov gosu gettext libtool libtool-bin autoconf automake \
+		pkg-config cmake clang libclang-dev neovim universal-ctags telnet \
 		python3-neovim ripgrep locales sshpass global sudo python3-virtualenv \
-		python3-dev clang-tidy gcc-multilib telnet && \
+		python3-dev clang-tidy gcc-multilib && \
 	rm -rf /var/lib/apt/lists/*
 
 # Configure system locale.
@@ -36,13 +35,6 @@ ENV LANG=en_US.UTF-8 \
 # Configure Neovim as a default system editor.
 ENV EDITOR=nvim \
 	VISUAL=nvim
-
-# Install tmate.
-RUN wget \
-		https://github.com/tmate-io/tmate/releases/download/2.4.0/tmate-2.4.0-static-linux-amd64.tar.xz \
-		-O /tmp/tmate.tar.xz && \
-	tar -C /usr/bin -xvf /tmp/tmate.tar.xz --strip-components=1 && \
-	rm -rf /tmp/tmate.tar.xz
 
 # Install prezto.
 RUN	git clone --recursive https://github.com/sorin-ionescu/prezto.git \
