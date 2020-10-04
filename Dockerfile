@@ -84,13 +84,6 @@ RUN curl -SsL \
 
 ENV PATH="/usr/local/go/bin:${PATH}"
 
-# Install P4Merge.
-RUN wget https://cdist2.perforce.com/perforce/r20.1/bin.linux26x86_64/p4v.tgz \
-		-O /tmp/p4v.tgz && \
-    cd /tmp/ && \
-    tar -C /usr/local -xzf /tmp/p4v.tgz --strip-components=1 && \
-    rm -rf /tmp/p4v.tgz
-
 # Install Ericsson CodeChecker.
 RUN git clone https://github.com/Ericsson/CodeChecker.git \
                 /opt/codechecker && \
