@@ -1,0 +1,15 @@
+[alias]
+	incoming = !git fetch && git log --pretty=oneline --abbrev-commit ..@{u}
+	outgoing = log --pretty=oneline --abbrev-commit @{u}..
+[merge]
+	tool = vim_mergetool
+	conflictstyle = diff3
+[mergetool "vim_mergetool"]
+	cmd = vim -f -c "MergetoolStart" "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
+	trustExitCode = true
+[push]
+	default = simple
+[pull]
+	rebase = true
+[core]
+	editor = vim

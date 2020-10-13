@@ -127,6 +127,9 @@ RUN git clone \
 		https://github.com/tmux-plugins/tpm /usr/share/tmux/plugins/tpm && \
 	/usr/share/tmux/plugins/tpm/bin/install_plugins
 
+# Install Git configuration.
+COPY files/gitconfig /etc/gitconfig
+
 # Install entrypoint script.
 COPY files/entrypoint.sh /usr/local/bin
 
