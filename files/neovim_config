@@ -74,6 +74,7 @@ Plug 'inkarkat/vim-mark'
 Plug 'farmergreg/vim-lastplace'
 Plug 'rhysd/committia.vim'
 Plug 'wincent/ferret'
+Plug 'samoshkin/vim-mergetool'
 call plug#end()
 
 set background=dark
@@ -140,3 +141,6 @@ let g:mwDefaultHighlightingPalette = 'maximum'
 let g:FerretMap=0
 nmap <leader>fs <Plug>(FerretAck)
 nmap <leader>fr <Plug>(FerretAcks)
+
+let g:mergetool_layout = 'LR,m'
+let g:mergetool_prefer_revision = 'local'
