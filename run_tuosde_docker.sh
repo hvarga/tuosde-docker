@@ -37,7 +37,6 @@ docker run --privileged --network host -it --rm \
 	-v $(pwd):/opt/workspace \
 	-v /tmp/.X11-unix:/tmp/.X11-unix \
 	-v "$HOME"/.Xauthority:/var/run/xauthority \
-	-v "$HOME"/.gitconfig:/etc/gitconfig \
 	-v "$HOME"/.ssh:/run/ssh:ro \
 	-v "$STORAGE_PATH"/home:/home/$USER_NAME \
 	-v "$STORAGE_PATH"/data:/opt/data \
