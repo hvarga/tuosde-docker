@@ -75,6 +75,7 @@ Plug 'farmergreg/vim-lastplace'
 Plug 'rhysd/committia.vim'
 Plug 'wincent/ferret'
 Plug 'samoshkin/vim-mergetool'
+Plug 'rhysd/vim-clang-format'
 call plug#end()
 
 set background=dark
