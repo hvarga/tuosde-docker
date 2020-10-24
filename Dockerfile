@@ -54,7 +54,7 @@ RUN	git clone --recursive https://github.com/sorin-ionescu/prezto.git \
 		'history-substring-search' 'prompt'/g" /etc/zsh/prezto/runcoms/zpreztorc
 
 # Install fzf.
-RUN git clone --branch 0.22.0 --depth 1 https://github.com/junegunn/fzf.git \
+RUN git clone --branch 0.23.1 --depth 1 https://github.com/junegunn/fzf.git \
 		/tmp/fzf && \
 	/tmp/fzf/install --bin && \
 	cp /tmp/fzf/bin/* /usr/local/bin && \

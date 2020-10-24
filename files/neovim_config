@@ -54,7 +54,7 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'airblade/vim-gitgutter'
 Plug 'easymotion/vim-easymotion'
 Plug 'kshenoy/vim-signature'
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim', { 'commit': '4145f53f3d343c389ff974b1f1a68eeb39fba18b' }
 Plug 'conradirwin/vim-bracketed-paste'
 Plug 't9md/vim-textmanip'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
