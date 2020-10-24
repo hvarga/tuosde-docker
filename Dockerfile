@@ -17,7 +17,7 @@ RUN apt-get update && yes | unminimize && DEBIAN_FRONTEND=noninteractive \
 		p7zip zip lcov gosu gettext libtool libtool-bin autoconf automake \
 		pkg-config cmake clang libclang-dev neovim universal-ctags telnet \
 		python3-neovim ripgrep locales sshpass global sudo python3-virtualenv \
-		python3-dev clang-tidy gcc-multilib clang-format && \
+		python3-dev clang-tidy gcc-multilib clang-format git-extras && \
 	rm -rf /var/lib/apt/lists/*
 
 # Configure system locale.
