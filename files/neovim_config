@@ -153,4 +153,5 @@ nmap <leader>fs <Plug>(FerretAck)
 nmap <leader>fr <Plug>(FerretAcks)
 
 let g:mergetool_layout = 'LR,m'
-let g:mergetool_prefer_revision = 'local'
+let g:mergetool_prefer_revision = 'unmodified'
+nmap <leader>mt <plug>(MergetoolToggle)
