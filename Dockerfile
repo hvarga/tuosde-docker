@@ -106,7 +106,7 @@ ENV PATH="/opt/trilium:${PATH}"
 ENV TRILIUM_DATA_DIR=/opt/data/trilium
 
 # Install nnn.
-RUN wget https://github.com/jarun/nnn/releases/download/v3.4/nnn_3.4-1_ubuntu20.04.amd64.deb \
+RUN wget https://github.com/jarun/nnn/releases/download/v3.5/nnn_3.5-1_ubuntu20.04.amd64.deb \
 	-O /tmp/nnn.deb && \
     dpkg -i /tmp/nnn.deb && \
     rm -rf /tmp/nnn.deb
