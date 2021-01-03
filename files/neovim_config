@@ -76,6 +76,7 @@ Plug 'rhysd/committia.vim'
 Plug 'wincent/ferret'
 Plug 'samoshkin/vim-mergetool'
 Plug 'rhysd/vim-clang-format'
+Plug 'machakann/vim-highlightedyank'
 call plug#end()
 
 set background=dark
@@ -158,3 +159,5 @@ nmap <leader>mt <plug>(MergetoolToggle)
 
 nmap <Space>h :split<CR>
 nmap <Space>v :vsplit<CR>
+
+let g:vim_search_pulse_duration = 200
