@@ -76,7 +76,6 @@ Plug 'rhysd/committia.vim'
 Plug 'wincent/ferret'
 Plug 'samoshkin/vim-mergetool'
 Plug 'rhysd/vim-clang-format'
-Plug 'zhaocai/GoldenView.Vim'
 call plug#end()
 
 set background=dark
