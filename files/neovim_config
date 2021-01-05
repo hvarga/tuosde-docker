@@ -77,6 +77,7 @@ Plug 'wincent/ferret'
 Plug 'samoshkin/vim-mergetool'
 Plug 'rhysd/vim-clang-format'
 Plug 'machakann/vim-highlightedyank'
+Plug 'preservim/tagbar'
 call plug#end()
 
 set background=dark
@@ -161,3 +162,8 @@ nmap <Space>h :split<CR>
 nmap <Space>v :vsplit<CR>
 
 let g:vim_search_pulse_duration = 200
+
+nnoremap <silent> <C-Space>q :TagbarToggle<CR>
+let g:tagbar_compact = 1
+let g:tagbar_width = 70
+let g:tagbar_silent = 1
