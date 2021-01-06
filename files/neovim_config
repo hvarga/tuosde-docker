@@ -45,6 +45,8 @@ set hidden
 set autoread
 au FocusGained * :checktime
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+xnoremap <  <gv
+xnoremap >  >gv
 
 call plug#begin('/usr/share/nvim/runtime/plugged')
 Plug 'vim-airline/vim-airline'
