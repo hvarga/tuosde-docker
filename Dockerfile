@@ -66,7 +66,7 @@ RUN git clone --branch 0.23.1 --depth 1 https://github.com/junegunn/fzf.git \
 	echo "source /usr/share/fzf/completion.zsh" >> /etc/zsh/zshrc && \
 	echo "export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'" \
 		>> /etc/zsh/zshrc && \
-	echo "export FZF_DEFAULT_OPTS='--height 40% --reverse --border'" \
+	echo "export FZF_DEFAULT_OPTS='--height 40% --reverse'" \
 		>> /etc/zsh/zshrc
 
 # Install Neovim plugin manager.
