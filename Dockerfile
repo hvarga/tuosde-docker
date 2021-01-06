@@ -116,6 +116,10 @@ RUN echo 'alias nnn="nnn -c"' >> /etc/zsh/zshrc
 # Install neovim configuration.
 COPY files/neovim_config /usr/share/nvim/sysinit.vim
 
+# Install Neovim TUOSDE documentation.
+COPY files/tuosde.txt /usr/share/nvim/runtime/doc/tuosde.txt
+RUN nvim --headless -c "helptags ALL" +qall 2> /dev/null
+
 # Install Neovim plugins.
 RUN nvim --headless +PlugInstall +UpdateRemotePlugins +qall 2> /dev/null
 

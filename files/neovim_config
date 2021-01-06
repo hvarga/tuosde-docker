@@ -106,6 +106,7 @@ nmap <C-Space>m :Marks<CR>
 nmap <C-Space>s :Rg<Space>
 nmap <C-Space>c :BCommits<CR>
 nmap <C-Space>C :Commits<CR>
+nmap <C-Space>h :Helptags<CR>
 
 let g:airline_theme='papercolor'
 let g:airline_symbols_ascii = 1
@@ -167,3 +168,5 @@ nnoremap <silent> <C-Space>q :TagbarToggle<CR>
 let g:tagbar_compact = 1
 let g:tagbar_width = 70
 let g:tagbar_silent = 1
+
+nnoremap ? :help tuosde<CR>
