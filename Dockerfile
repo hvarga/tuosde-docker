@@ -114,6 +114,12 @@ RUN wget https://github.com/jarun/nnn/releases/download/v3.5/nnn_3.5-1_ubuntu20.
 ENV NNN_USE_EDITOR=1
 RUN echo 'alias nnn="nnn -c"' >> /etc/zsh/zshrc
 
+# Install Git LFS.
+RUN wget https://packagecloud.io/github/git-lfs/packages/debian/buster/git-lfs_2.13.1_amd64.deb/download \
+    -O /tmp/git-lfs.deb && \
+    dpkg -i /tmp/git-lfs.deb && \
+    rm -rf /tmp/git-lfs.deb
+
 # Install neovim configuration.
 COPY files/neovim_config /usr/share/nvim/sysinit.vim
 
