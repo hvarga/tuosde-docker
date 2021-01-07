@@ -112,7 +112,7 @@ RUN wget https://github.com/jarun/nnn/releases/download/v3.5/nnn_3.5-1_ubuntu20.
     dpkg -i /tmp/nnn.deb && \
     rm -rf /tmp/nnn.deb
 ENV NNN_USE_EDITOR=1
-RUN echo 'alias nnn="nnn -c"' >> /etc/zsh/zshrc
+RUN echo 'alias nnn="nnn -c -o"' >> /etc/zsh/zshrc
 
 # Install Git LFS.
 RUN wget https://packagecloud.io/github/git-lfs/packages/debian/buster/git-lfs_2.13.1_amd64.deb/download \
