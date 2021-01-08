@@ -1,5 +1,7 @@
 #!/bin/sh
 
+process=$1
+
 # Check environment variables.
 if [ -z "$USER_ID" ]; then
 	echo "USER_ID not set. Exiting..."
@@ -31,8 +33,4 @@ mkdir -p /home/$USER_NAME/.ssh
 cp -r /run/ssh/* /home/$USER_NAME/.ssh
 chown -R $USER_NAME:$GROUP_NAME ~/.ssh
 
-PROCESS="/usr/bin/tmux"
-if [ -f ".tmuxinator.yml" ]; then
-	PROCESS="/usr/bin/tmuxinator"
-fi
-exec gosu "$USER_NAME" $PROCESS
+exec gosu "$USER_NAME" $process
