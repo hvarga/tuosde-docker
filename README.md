@@ -50,6 +50,12 @@ project:
 run_tuosde_docker.sh
 ```
 
-Above command will start the Docker container with a tmux session from which you
-can start working on your project. Project files are mounted on
+By default, above command will start the Docker container with a tmux session
+from which you can start working on your project. Project files are mounted on
 `/opt/workspace` which is also set as a current working directory.
+
+Read more about this script and various options by running:
+
+```shell
+run_tuosde_docker.sh -h
+```
