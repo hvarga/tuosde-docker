@@ -18,7 +18,7 @@ RUN apt-get update && yes | unminimize && DEBIAN_FRONTEND=noninteractive \
 		pkg-config cmake clang libclang-dev neovim universal-ctags telnet \
 		python3-neovim ripgrep locales sshpass global sudo python3-virtualenv \
 		python3-dev clang-tidy gcc-multilib clang-format git-extras bitwise \
-		figlet tmate && \
+		figlet tmate inotify-tools && \
 	rm -rf /var/lib/apt/lists/*
 
 # Configure system locale.
