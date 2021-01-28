@@ -96,7 +96,7 @@ RUN git clone https://github.com/Ericsson/CodeChecker.git \
 COPY files/codechecker.sh /usr/local/bin/CodeChecker
 
 # Install Trilium.
-RUN wget https://github.com/zadam/trilium/releases/download/v0.44.9/trilium-linux-x64-server-0.44.9.tar.xz \
+RUN wget https://github.com/zadam/trilium/releases/download/v0.45.8/trilium-linux-x64-server-0.45.8.tar.xz \
 		-O /tmp/trilium.tar.xz && \
 	cd /tmp && \
 	tar -xf /tmp/trilium.tar.xz && \
