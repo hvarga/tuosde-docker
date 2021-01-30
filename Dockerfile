@@ -120,6 +120,12 @@ RUN wget https://packagecloud.io/github/git-lfs/packages/debian/buster/git-lfs_2
     dpkg -i /tmp/git-lfs.deb && \
     rm -rf /tmp/git-lfs.deb
 
+# Install Hugo.
+RUN wget https://github.com/gohugoio/hugo/releases/download/v0.80.0/hugo_0.80.0_Linux-64bit.deb \
+    -O /tmp/hugo.deb && \
+    dpkg -i /tmp/hugo.deb && \
+    rm -rf /tmp/hugo.deb
+
 # Install neovim configuration.
 COPY files/neovim_config /usr/share/nvim/sysinit.vim
 
