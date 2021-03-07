@@ -37,3 +37,12 @@ ccicons
 hyperxmp
 totpages
 biber
+makeindex
+glossaries
+glossaries-english
+tracklang
+datatool
+xfor
+textcase
+mfirstuc
+appendixnumberbeamer
