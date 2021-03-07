@@ -53,6 +53,7 @@ set history=1000
 set winminheight=0
 set nowrap
 set nospell
+set list
 
 call plug#begin('/usr/share/nvim/runtime/plugged')
 Plug 'vim-airline/vim-airline'
