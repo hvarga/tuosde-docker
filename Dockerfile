@@ -117,7 +117,7 @@ RUN wget https://github.com/gohugoio/hugo/releases/download/v0.80.0/hugo_0.80.0_
 
 # Install TinyTeX.
 ENV PATH="/opt/tinytex/bin/x86_64-linux:${PATH}"
-RUN wget https://github.com/yihui/tinytex-releases/releases/download/v2021.02/TinyTeX-0-v2021.02.tar.gz \
+RUN wget https://github.com/yihui/tinytex-releases/releases/download/v2021.04/TinyTeX-0-v2021.04.tar.gz \
         -O /tmp/TinyTeX.tar.gz && \
     tar xvf /tmp/TinyTeX.tar.gz -C /tmp && \
     mv /tmp/.TinyTeX /opt/tinytex && \
