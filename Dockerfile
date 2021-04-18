@@ -23,8 +23,8 @@ RUN apt-get update && yes | unminimize && DEBIAN_FRONTEND=noninteractive \
 
 # Configure system locale.
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
-    dpkg-reconfigure --frontend=noninteractive locales && \
-    update-locale LANG=en_US.UTF-8
+	dpkg-reconfigure --frontend=noninteractive locales && \
+	update-locale LANG=en_US.UTF-8
 
 ENV LANG=en_US.UTF-8 \
 	LANGUAGE=en_US:en \
@@ -38,7 +38,7 @@ ENV EDITOR=nvim \
 	VISUAL=nvim
 
 # Install prezto.
-RUN	git clone --recursive https://github.com/sorin-ionescu/prezto.git \
+RUN git clone --recursive https://github.com/sorin-ionescu/prezto.git \
 		/etc/zsh/prezto && \
 	echo "source /etc/zsh/prezto/runcoms/zlogin" > /etc/zsh/zlogin && \
 	echo "source /etc/zsh/prezto/runcoms/zlogout" > /etc/zsh/zlogout && \
@@ -86,43 +86,42 @@ RUN curl -SsL \
 ENV PATH="/usr/local/go/bin:${PATH}"
 
 # Install Ericsson CodeChecker.
-RUN git clone https://github.com/Ericsson/CodeChecker.git \
-                /opt/codechecker && \
-        cd /opt/codechecker && \
-        git checkout --detach 65aa0c90a4f5d8a1d857e4ef1570045419c65266 && \
-        make venv && \
-        . venv/bin/activate && \
-        make package
+RUN git clone https://github.com/Ericsson/CodeChecker.git /opt/codechecker && \
+	cd /opt/codechecker && \
+	git checkout --detach 65aa0c90a4f5d8a1d857e4ef1570045419c65266 && \
+	make venv && \
+	. venv/bin/activate && \
+	make package
 COPY files/codechecker.sh /usr/local/bin/CodeChecker
 
 # Install nnn.
 RUN wget https://github.com/jarun/nnn/releases/download/v3.5/nnn_3.5-1_ubuntu20.04.amd64.deb \
 	-O /tmp/nnn.deb && \
-    dpkg -i /tmp/nnn.deb && \
-    rm -rf /tmp/nnn.deb
+	dpkg -i /tmp/nnn.deb && \
+	rm -rf /tmp/nnn.deb
 ENV NNN_USE_EDITOR=1
 RUN echo 'alias nnn="nnn -c -o"' >> /etc/zsh/zshrc
 
 # Install Git LFS.
 RUN wget https://packagecloud.io/github/git-lfs/packages/debian/buster/git-lfs_2.13.1_amd64.deb/download \
-    -O /tmp/git-lfs.deb && \
-    dpkg -i /tmp/git-lfs.deb && \
-    rm -rf /tmp/git-lfs.deb
+	-O /tmp/git-lfs.deb && \
+	dpkg -i /tmp/git-lfs.deb && \
+	rm -rf /tmp/git-lfs.deb
 
 # Install Hugo.
 RUN wget https://github.com/gohugoio/hugo/releases/download/v0.80.0/hugo_0.80.0_Linux-64bit.deb \
-    -O /tmp/hugo.deb && \
-    dpkg -i /tmp/hugo.deb && \
-    rm -rf /tmp/hugo.deb
+	-O /tmp/hugo.deb && \
+	dpkg -i /tmp/hugo.deb && \
+	rm -rf /tmp/hugo.deb
 
 # Install TinyTeX.
 ENV PATH="/opt/tinytex/bin/x86_64-linux:${PATH}"
 RUN wget https://github.com/yihui/tinytex-releases/releases/download/v2021.04/TinyTeX-0-v2021.04.tar.gz \
-        -O /tmp/TinyTeX.tar.gz && \
-    tar xvf /tmp/TinyTeX.tar.gz -C /tmp && \
-    mv /tmp/.TinyTeX /opt/tinytex && \
-    rm -rf /tmp/TinyTeX.tar.gz && \
-    tlmgr update --self
+	-O /tmp/TinyTeX.tar.gz && \
+	tar xvf /tmp/TinyTeX.tar.gz -C /tmp && \
+	mv /tmp/.TinyTeX /opt/tinytex && \
+	rm -rf /tmp/TinyTeX.tar.gz && \
+	tlmgr update --self
 COPY files/tinytex-packages.txt /opt/tinytex
 RUN tlmgr install $(cat /opt/tinytex/tinytex-packages.txt | tr '\n' ' ')
 
