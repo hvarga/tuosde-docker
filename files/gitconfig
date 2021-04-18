@@ -1,6 +1,9 @@
 [alias]
 	incoming = !git fetch && git log --pretty=oneline --abbrev-commit ..@{u}
 	outgoing = log --pretty=oneline --abbrev-commit @{u}..
+[diff]
+	tool = vimdiff
+	algorithm = histogram
 [merge]
 	tool = vim_mergetool
 	conflictstyle = diff3
