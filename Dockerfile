@@ -12,13 +12,12 @@ ENV TERM xterm-256color
 RUN apt-get update && yes | unminimize && DEBIAN_FRONTEND=noninteractive \
 	apt-get install -y \
 		ca-certificates curl apt-transport-https build-essential wget git-core \
-		unzip python less man-db zsh asciinema htop tmux cloc tree valgrind \
-		strace tmuxinator openssh-client shellcheck lsof libcmocka0 doxygen \
-		p7zip zip lcov gosu gettext libtool libtool-bin autoconf automake \
-		pkg-config cmake clang libclang-dev neovim universal-ctags telnet \
-		python3-neovim ripgrep locales sshpass global sudo python3-virtualenv \
-		python3-dev clang-tidy gcc-multilib clang-format git-extras bitwise \
-		figlet tmate inotify-tools rsync && \
+		unzip python less man-db zsh asciinema htop tmux cloc tree tmuxinator \
+		openssh-client shellcheck lsof p7zip zip gosu gettext libtool \
+		libtool-bin autoconf automake pkg-config cmake clang libclang-dev \
+		neovim universal-ctags telnet python3-neovim ripgrep locales sshpass \
+		global sudo python3-virtualenv python3-dev gcc-multilib \
+		clang-format git-extras bitwise figlet tmate inotify-tools rsync && \
 	rm -rf /var/lib/apt/lists/*
 
 # Configure system locale.
@@ -84,15 +83,6 @@ RUN curl -SsL \
 	rm -rf /tmp/go.tar.gz
 
 ENV PATH="/usr/local/go/bin:${PATH}"
-
-# Install Ericsson CodeChecker.
-RUN git clone https://github.com/Ericsson/CodeChecker.git /opt/codechecker && \
-	cd /opt/codechecker && \
-	git checkout --detach 65aa0c90a4f5d8a1d857e4ef1570045419c65266 && \
-	make venv && \
-	. venv/bin/activate && \
-	make package
-COPY files/codechecker.sh /usr/local/bin/CodeChecker
 
 # Install nnn.
 RUN wget https://github.com/jarun/nnn/releases/download/v3.5/nnn_3.5-1_ubuntu20.04.amd64.deb \
