@@ -105,7 +105,6 @@ docker run --privileged --network host -it --rm \
 	-v "$workspace_path":/opt/workspace \
 	-v /tmp/.X11-unix:/tmp/.X11-unix \
 	-v "$HOME"/.Xauthority:/var/run/xauthority \
-	-v "$HOME"/.ssh:/run/ssh:ro \
 	-v "$storage_path"/home:/home/$USER_NAME \
 	-v "$storage_path"/data:/opt/data \
 	hvarga/tuosde-docker \
