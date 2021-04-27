@@ -94,7 +94,7 @@ create_path "$workspace_path"
 create_path "$storage_path/home"
 create_path "$storage_path/data"
 
-docker run --privileged --network host -it --rm \
+docker run --privileged -it --rm \
 	-e USER_ID=$(id -u) \
 	-e GROUP_ID=$(id -g) \
 	-e USER_NAME=$(id -un) \
@@ -107,5 +107,6 @@ docker run --privileged --network host -it --rm \
 	-v "$HOME"/.Xauthority:/var/run/xauthority \
 	-v "$storage_path"/home:/home/$USER_NAME \
 	-v "$storage_path"/data:/opt/data \
+	-p 1313:1313 \
 	hvarga/tuosde-docker \
 	"$executable_path"
