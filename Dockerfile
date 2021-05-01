@@ -150,6 +150,12 @@ RUN wget https://github.com/imsnif/diskonaut/releases/download/0.11.0/diskonaut-
 	tar xvf /tmp/diskonaut.tar.gz -C /usr/local/bin && \
 	rm -rf /tmp/diskonaut.tar.gz
 
+# Install hyperfine.
+RUN wget https://github.com/sharkdp/hyperfine/releases/download/v1.11.0/hyperfine_1.11.0_amd64.deb \
+		-O /tmp/hyperfine.deb && \
+	dpkg -i /tmp/hyperfine.deb && \
+	rm -rf /tmp/hyperfine.deb
+
 # When a user gains access to shell he will be put into a workspace directory.
 WORKDIR /opt/workspace
 
