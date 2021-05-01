@@ -144,6 +144,12 @@ COPY files/ssh_config.conf /etc/ssh/ssh_config.d/
 # Install entrypoint script.
 COPY files/entrypoint.sh /usr/local/bin
 
+# Install diskonaut.
+RUN wget https://github.com/imsnif/diskonaut/releases/download/0.11.0/diskonaut-0.11.0-unknown-linux-musl.tar.gz \
+		-O /tmp/diskonaut.tar.gz && \
+	tar xvf /tmp/diskonaut.tar.gz -C /usr/local/bin && \
+	rm -rf /tmp/diskonaut.tar.gz
+
 # When a user gains access to shell he will be put into a workspace directory.
 WORKDIR /opt/workspace
 
