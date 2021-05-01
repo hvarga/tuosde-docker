@@ -139,7 +139,7 @@ RUN git clone \
 COPY files/gitconfig /etc/gitconfig
 
 # Install SSH configuration.
-COPY files/ssh_config /etc/ssh/ssh_config.d/
+COPY files/ssh_config.conf /etc/ssh/ssh_config.d/
 
 # Install entrypoint script.
 COPY files/entrypoint.sh /usr/local/bin
