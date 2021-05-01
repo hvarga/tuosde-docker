@@ -39,6 +39,7 @@ ENV EDITOR=nvim \
 # Install prezto.
 RUN git clone --recursive https://github.com/sorin-ionescu/prezto.git \
 		/etc/zsh/prezto && \
+	cd /etc/zsh/prezto; git checkout --detach 8a967fc && \
 	echo "source /etc/zsh/prezto/runcoms/zlogin" > /etc/zsh/zlogin && \
 	echo "source /etc/zsh/prezto/runcoms/zlogout" > /etc/zsh/zlogout && \
 	echo "source /etc/zsh/prezto/runcoms/zshenv" > /etc/zsh/zshenv && \
