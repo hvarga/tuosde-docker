@@ -103,6 +103,7 @@ RUN wget https://github.com/gohugoio/hugo/releases/download/v0.80.0/hugo_0.80.0_
 	-O /tmp/hugo.deb && \
 	dpkg -i /tmp/hugo.deb && \
 	rm -rf /tmp/hugo.deb
+EXPOSE 1313
 
 # Install TinyTeX.
 ENV PATH="/opt/tinytex/bin/x86_64-linux:${PATH}"
