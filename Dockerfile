@@ -12,7 +12,7 @@ ENV TERM xterm-256color
 RUN apt-get update && yes | unminimize && DEBIAN_FRONTEND=noninteractive \
 	apt-get install -y \
 		ca-certificates curl apt-transport-https build-essential wget git-core \
-		unzip python less man-db zsh asciinema htop tmux cloc tree tmuxinator \
+		unzip python less man-db zsh asciinema htop tmux cloc tree \
 		openssh-client shellcheck lsof p7zip zip gosu gettext libtool \
 		libtool-bin autoconf automake pkg-config cmake clang libclang-dev \
 		neovim universal-ctags telnet python3-neovim ripgrep locales sshpass \
@@ -155,6 +155,12 @@ RUN wget https://github.com/sharkdp/hyperfine/releases/download/v1.11.0/hyperfin
 		-O /tmp/hyperfine.deb && \
 	dpkg -i /tmp/hyperfine.deb && \
 	rm -rf /tmp/hyperfine.deb
+
+# Install smug.
+RUN wget https://github.com/ivaaaan/smug/releases/download/v0.2.2/smug_0.2.2_Linux_x86_64.tar.gz \
+		-O /tmp/smug.tar.gz && \
+	tar xvf /tmp/smug.tar.gz -C /usr/local/bin smug && \
+	rm -rf /tmp/smug.tar.gz
 
 # When a user gains access to shell he will be put into a workspace directory.
 WORKDIR /opt/workspace
