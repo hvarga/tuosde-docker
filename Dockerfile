@@ -16,7 +16,7 @@ RUN apt-get update && yes | unminimize && DEBIAN_FRONTEND=noninteractive \
 		openssh-client shellcheck lsof p7zip zip gosu gettext libtool \
 		libtool-bin autoconf automake pkg-config cmake clang libclang-dev \
 		neovim universal-ctags telnet python3-neovim ripgrep locales sshpass \
-		global sudo python3-virtualenv python3-dev gcc-multilib \
+		global sudo python3-virtualenv python3-dev gcc-multilib iputils-ping \
 		clang-format git-extras bitwise figlet tmate inotify-tools rsync && \
 	rm -rf /var/lib/apt/lists/*
 
