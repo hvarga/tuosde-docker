@@ -106,17 +106,6 @@ RUN wget https://github.com/gohugoio/hugo/releases/download/v0.80.0/hugo_0.80.0_
 	rm -rf /tmp/hugo.deb
 EXPOSE 1313
 
-# Install TinyTeX.
-ENV PATH="/opt/tinytex/bin/x86_64-linux:${PATH}"
-RUN wget https://github.com/yihui/tinytex-releases/releases/download/v2021.04/TinyTeX-0-v2021.04.tar.gz \
-	-O /tmp/TinyTeX.tar.gz && \
-	tar xvf /tmp/TinyTeX.tar.gz -C /tmp && \
-	mv /tmp/.TinyTeX /opt/tinytex && \
-	rm -rf /tmp/TinyTeX.tar.gz && \
-	tlmgr update --self
-COPY files/tinytex-packages.txt /opt/tinytex
-RUN tlmgr install $(cat /opt/tinytex/tinytex-packages.txt | tr '\n' ' ')
-
 # Install neovim configuration.
 COPY files/neovim_config /usr/share/nvim/sysinit.vim
 
