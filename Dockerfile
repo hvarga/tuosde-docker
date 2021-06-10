@@ -86,7 +86,7 @@ RUN curl -SsL \
 ENV PATH="/usr/local/go/bin:${PATH}"
 
 # Install nnn.
-RUN wget https://github.com/jarun/nnn/releases/download/v3.5/nnn_3.5-1_ubuntu20.04.amd64.deb \
+RUN wget https://github.com/jarun/nnn/releases/download/v4.0/nnn_4.0-1_ubuntu20.04.amd64.deb \
 	-O /tmp/nnn.deb && \
 	dpkg -i /tmp/nnn.deb && \
 	rm -rf /tmp/nnn.deb
