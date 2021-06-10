@@ -116,6 +116,7 @@ nmap <C-Space>s :Rg<Space>
 nmap <C-Space>c :BCommits<CR>
 nmap <C-Space>C :Commits<CR>
 nmap <C-Space>h :Helptags<CR>
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".<q-args>, 1, <bang>0)
 
 let g:airline_theme='papercolor'
 let g:airline_symbols_ascii = 1
