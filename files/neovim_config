@@ -56,37 +56,34 @@ set nospell
 set list
 
 call plug#begin('/usr/share/nvim/runtime/plugged')
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'tpope/vim-fugitive'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'airblade/vim-gitgutter'
-Plug 'easymotion/vim-easymotion'
-Plug 'kshenoy/vim-signature'
+Plug 'vim-airline/vim-airline', { 'commit': 'ad716f1df4f89589c0b13b9a39e68a10adba5e13' }
+Plug 'vim-airline/vim-airline-themes', { 'commit': '97cf3e6e638f936187d5f6e9b5eb1bdf0a4df256' }
+Plug 'tpope/vim-fugitive', { 'commit': '2a53d7924877b38b3d82fba188fd9053bfbc646e' }
+Plug 'ntpeters/vim-better-whitespace', { 'commit': '8cf4b2175dd61416c2fe7d3234324a6c59d678de' }
+Plug 'airblade/vim-gitgutter', { 'commit': '832f7c62261930517453fec96d78f79d5289b75d' }
+Plug 'easymotion/vim-easymotion', { 'commit': '65ee835a4efee26ea476fefefd53b267aa067e54' }
+Plug 'kshenoy/vim-signature', { 'commit': '6bc3dd1294a22e897f0dcf8dd72b85f350e306bc' }
 Plug 'junegunn/fzf.vim', { 'commit': '4145f53f3d343c389ff974b1f1a68eeb39fba18b' }
-Plug 'conradirwin/vim-bracketed-paste'
-Plug 't9md/vim-textmanip'
-Plug 'jeffkreeftmeijer/vim-numbertoggle'
-Plug 'tpope/vim-vinegar'
-Plug 'RRethy/vim-illuminate'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'tpope/vim-commentary'
-Plug 'ervandew/supertab'
-Plug 'rbgrouleff/bclose.vim'
-Plug 'svermeulen/vim-cutlass'
-Plug 'mcchrish/nnn.vim'
-Plug 'rhysd/git-messenger.vim'
-Plug 'szw/vim-maximizer'
-Plug 'inkarkat/vim-ingo-library'
-Plug 'inkarkat/vim-mark'
-Plug 'farmergreg/vim-lastplace'
-Plug 'rhysd/committia.vim'
-Plug 'wincent/ferret'
-Plug 'samoshkin/vim-mergetool'
-Plug 'rhysd/vim-clang-format'
-Plug 'machakann/vim-highlightedyank'
-Plug 'preservim/tagbar'
+Plug 'conradirwin/vim-bracketed-paste', { 'commit': 'c4c639f3cacd1b874ed6f5f196fac772e089c932' }
+Plug 't9md/vim-textmanip', { 'commit': '1948542d12e37f286ef4edd87db4f29e4c7fd771' }
+Plug 'jeffkreeftmeijer/vim-numbertoggle', { 'commit': '075b7478777e694fbac330ee34a74590dad0fee1' }
+Plug 'RRethy/vim-illuminate', { 'commit': '8fe150bd775f659da7e40ea2d3ad7473e6d29494' }
+Plug 'NLKNguyen/papercolor-theme', { 'commit': '845cfa94d95d404ff59e0bdc578b299279e1dc07' }
+Plug 'ludovicchabant/vim-gutentags', { 'commit': '50705e8ebb7038b31314f416d1bddd9cb9154049' }
+Plug 'tpope/vim-commentary', { 'commit': '349340debb34f6302931f0eb7139b2c11dfdf427' }
+Plug 'ervandew/supertab', { 'commit': 'f0093ae12a9115498f887199809a6114659fc858' }
+Plug 'rbgrouleff/bclose.vim', { 'commit': '99018b4a2dd18aea1cbd3aa23565b01a0f8c5b73' }
+Plug 'svermeulen/vim-cutlass', { 'commit': '7afd649415541634c8ce317fafbc31cd19d57589' }
+Plug 'mcchrish/nnn.vim', { 'commit': '523edb432dd93c7db3a003e85902b58021b17e19' }
+Plug 'szw/vim-maximizer', { 'commit': '2e54952fe91e140a2e69f35f22131219fcd9c5f1' }
+Plug 'inkarkat/vim-ingo-library', { 'commit': '51703e0f5fc73836b8e5be222f6eebde1891a664' }
+Plug 'inkarkat/vim-mark', { 'commit': '19757f529eab5bd3eb406ac03f62c961c75a17dc' }
+Plug 'farmergreg/vim-lastplace', { 'commit': 'd522829d810f3254ca09da368a896c962d4a3d61' }
+Plug 'rhysd/committia.vim', { 'commit': '1d288281586d1e6b52646a4c412df3dd3a2fe231' }
+Plug 'wincent/ferret', { 'commit': 'a513036f28d9ef1092d95ba7f183b3966a070194' }
+Plug 'samoshkin/vim-mergetool', { 'commit': '0275a85256ad173e3cde586d54f66566c01b607f' }
+Plug 'machakann/vim-highlightedyank', { 'commit': '931cc6bd53e4a1fdbe592751f0e13c0e401f0a49' }
+Plug 'preservim/tagbar', { 'commit': 'bb8ca482a5d14a771f718bd794b5945be3a6ff74' }
 call plug#end()
 
 set background=dark
@@ -107,7 +104,7 @@ hi link illuminatedWord Visual
 let g:fzf_preview_window = ''
 nmap <C-Space>f :GFiles<CR>
 nmap <C-Space>F :Files<CR>
-nmap <C-Space>b :Gblame<CR>
+nmap <C-Space>b :Git blame<CR>
 nmap <C-Space>t :BTags<CR>
 nmap <C-Space>T :Tags<CR>
 nmap <C-Space>l :BLines<CR>
