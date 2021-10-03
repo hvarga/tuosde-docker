@@ -71,7 +71,6 @@ Plug 'RRethy/vim-illuminate', { 'commit': '8fe150bd775f659da7e40ea2d3ad7473e6d29
 Plug 'NLKNguyen/papercolor-theme', { 'commit': '845cfa94d95d404ff59e0bdc578b299279e1dc07' }
 Plug 'ludovicchabant/vim-gutentags', { 'commit': '50705e8ebb7038b31314f416d1bddd9cb9154049' }
 Plug 'tpope/vim-commentary', { 'commit': '349340debb34f6302931f0eb7139b2c11dfdf427' }
-Plug 'ervandew/supertab', { 'commit': 'f0093ae12a9115498f887199809a6114659fc858' }
 Plug 'rbgrouleff/bclose.vim', { 'commit': '99018b4a2dd18aea1cbd3aa23565b01a0f8c5b73' }
 Plug 'svermeulen/vim-cutlass', { 'commit': '7afd649415541634c8ce317fafbc31cd19d57589' }
 Plug 'mcchrish/nnn.vim', { 'commit': '523edb432dd93c7db3a003e85902b58021b17e19' }
