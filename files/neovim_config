@@ -84,6 +84,7 @@ Plug 'wincent/ferret', { 'commit': 'a513036f28d9ef1092d95ba7f183b3966a070194' }
 Plug 'samoshkin/vim-mergetool', { 'commit': '0275a85256ad173e3cde586d54f66566c01b607f' }
 Plug 'machakann/vim-highlightedyank', { 'commit': '931cc6bd53e4a1fdbe592751f0e13c0e401f0a49' }
 Plug 'preservim/tagbar', { 'commit': 'bb8ca482a5d14a771f718bd794b5945be3a6ff74' }
+Plug 'aklt/plantuml-syntax', { 'commit': '405186847a44c16dd039bb644541b4c8fbdab095' }
 call plug#end()
 
 set background=dark
