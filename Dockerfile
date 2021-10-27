@@ -36,6 +36,10 @@ ENV LANG=en_US.UTF-8 \
 ENV EDITOR=nvim \
 	VISUAL=nvim
 
+# Install sudoers configuration.
+COPY files/sudoers /etc/sudoers.d/
+RUN chmod 0440 /etc/sudoers.d/sudoers
+
 # Install prezto.
 RUN git clone --recursive https://github.com/sorin-ionescu/prezto.git \
 		/etc/zsh/prezto && \

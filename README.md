@@ -3,12 +3,12 @@
 ## Introduction
 
 The aim of this repository is to encapsulate the developlement environment
-described in [TUOSDE](https://www.tuosde.org/) in a form of a Docker image.
+described in [TUOSDE](https://www.tuosde.org/) in a form of a OCI Container
+Image.
 
-To get this Docker image, either follow chapter [Pull](#pull) to download the
-pre-built image from the Docker Hub or chapter [Build](#build) to build
-it yourself. The easiest and recommended way is to download the pre-built image
-from Docker Hub.
+To get this image, either follow chapter [Pull](#pull) to download the pre-built
+image from the Docker Hub or chapter [Build](#build) to build it yourself. The
+easiest and recommended way is to download the pre-built image from Docker Hub.
 
 After you have gained the image, follow chapter [Run](#run) to run the image.
 
@@ -17,7 +17,7 @@ After you have gained the image, follow chapter [Run](#run) to run the image.
 Run the following command:
 
 ```shell
-docker pull hvarga/tuosde-docker
+podman pull docker://hvarga/tuosde-docker
 ```
 
 ## Build
@@ -50,8 +50,8 @@ project:
 run_tuosde_docker.sh
 ```
 
-By default, above command will start the Docker container with a tmux session
-from which you can start working on your project. Project files are mounted on
+By default, above command will start the container with a tmux session from
+which you can start working on your project. Project files are mounted on
 `/opt/workspace` which is also set as a current working directory.
 
 Read more about this script and various options by running:
@@ -59,3 +59,8 @@ Read more about this script and various options by running:
 ```shell
 run_tuosde_docker.sh -h
 ```
+
+## References
+
+1. [What is Podman](https://docs.podman.io/)
+2. [A Practical Introduction to Container Terminology](https://developers.redhat.com/blog/2018/02/22/container-terminology-practical-introduction)

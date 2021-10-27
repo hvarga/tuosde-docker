@@ -9,8 +9,8 @@ create_path () {
 display_help () {
 	echo "Run a TUOSDE container."
 	echo ""
-	echo "TUOSDE container is a Docker Container that encapsulates a"
-	echo "developlement environment described in https://www.tuosde.org/."
+	echo "TUOSDE container is a OCI Container that encapsulates a development"
+	echo "environment described in https://www.tuosde.org/."
 	echo ""
 	echo "This script hides complexity of running a TUOSDE container since it"
 	echo "requires a significant knowledge about the host system configuration"
@@ -53,13 +53,14 @@ display_help () {
 	echo "  $ $script_name -w /home/user/project -s /home/user/storage -e tmate"
 	echo ""
 	echo "Notes"
-	echo "  TUOSDE container requires a POSIX compatible operating system"
-	echo "  and a Docker Engine. Both must be installed and running on a host."
+	echo "  TUOSDE container requires a POSIX compatible operating system and"
+	echo "  a Container Engine. Both must be installed and running on a host."
 	echo ""
 	echo "See Also"
 	echo "  Web: https://www.tuosde.org/"
 	echo "  GitHub: https://github.com/hvarga/tuosde-docker"
 	echo "  Docker Hub: https://hub.docker.com/r/hvarga/tuosde-docker"
+	echo "  Podman: https://podman.io/"
 }
 
 script_name=$(basename $0)
@@ -94,14 +95,13 @@ create_path "$workspace_path"
 create_path "$storage_path/home"
 create_path "$storage_path/data"
 
-docker run --privileged -it --rm -P \
-	-e USER_ID=$(id -u) \
-	-e GROUP_ID=$(id -g) \
+podman run --privileged -it --rm -P \
+	--user $(id -u):$(id -g) \
+	--userns=keep-id \
+	--tz=local \
 	-e USER_NAME=$(id -un) \
-	-e GROUP_NAME=$(id -gn) \
 	-e DISPLAY="$DISPLAY" \
 	-e XAUTHORITY=/var/run/xauthority \
-	-v /etc/localtime:/etc/localtime \
 	-v "$workspace_path":/opt/workspace \
 	-v /tmp/.X11-unix:/tmp/.X11-unix \
 	-v "$HOME"/.Xauthority:/var/run/xauthority \
