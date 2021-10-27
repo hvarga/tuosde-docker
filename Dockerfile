@@ -13,11 +13,11 @@ RUN apt-get update && yes | unminimize && DEBIAN_FRONTEND=noninteractive \
 	apt-get install -y \
 		ca-certificates curl apt-transport-https build-essential wget git-core \
 		unzip python less man-db zsh asciinema htop tmux cloc tree \
-		openssh-client shellcheck lsof p7zip zip gosu gettext libtool \
+		openssh-client shellcheck lsof p7zip zip gettext libtool \
 		libtool-bin autoconf automake pkg-config cmake clang libclang-dev \
 		neovim universal-ctags telnet python3-neovim ripgrep locales sshpass \
 		global sudo python3-virtualenv python3-dev gcc-multilib iputils-ping \
-		clang-format git-extras bitwise figlet tmate inotify-tools rsync && \
+		clang-format git-extras bitwise tmate inotify-tools rsync && \
 	rm -rf /var/lib/apt/lists/*
 
 # Configure system locale.
@@ -80,15 +80,6 @@ RUN mkdir -p /usr/share/nvim/runtime/autoload && \
 	curl -sfLo /usr/share/nvim/runtime/autoload/plug.vim --create-dirs \
 		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-# Install Go.
-RUN curl -SsL \
-		https://dl.google.com/go/go1.15.2.linux-amd64.tar.gz \
-		-o /tmp/go.tar.gz && \
-	tar -C /usr/local -xzf /tmp/go.tar.gz && \
-	rm -rf /tmp/go.tar.gz
-
-ENV PATH="/usr/local/go/bin:${PATH}"
-
 # Install nnn.
 RUN wget https://github.com/jarun/nnn/releases/download/v4.0/nnn_4.0-1_ubuntu20.04.amd64.deb \
 	-O /tmp/nnn.deb && \
@@ -102,13 +93,6 @@ RUN wget https://packagecloud.io/github/git-lfs/packages/debian/buster/git-lfs_2
 	-O /tmp/git-lfs.deb && \
 	dpkg -i /tmp/git-lfs.deb && \
 	rm -rf /tmp/git-lfs.deb
-
-# Install Hugo.
-RUN wget https://github.com/gohugoio/hugo/releases/download/v0.80.0/hugo_0.80.0_Linux-64bit.deb \
-	-O /tmp/hugo.deb && \
-	dpkg -i /tmp/hugo.deb && \
-	rm -rf /tmp/hugo.deb
-EXPOSE 1313
 
 # Install neovim configuration.
 COPY files/neovim_config /usr/share/nvim/sysinit.vim
@@ -136,24 +120,6 @@ COPY files/ssh_config.conf /etc/ssh/ssh_config.d/
 
 # Install entrypoint script.
 COPY files/entrypoint.sh /usr/local/bin
-
-# Install diskonaut.
-RUN wget https://github.com/imsnif/diskonaut/releases/download/0.11.0/diskonaut-0.11.0-unknown-linux-musl.tar.gz \
-		-O /tmp/diskonaut.tar.gz && \
-	tar xvf /tmp/diskonaut.tar.gz -C /usr/local/bin && \
-	rm -rf /tmp/diskonaut.tar.gz
-
-# Install hyperfine.
-RUN wget https://github.com/sharkdp/hyperfine/releases/download/v1.11.0/hyperfine_1.11.0_amd64.deb \
-		-O /tmp/hyperfine.deb && \
-	dpkg -i /tmp/hyperfine.deb && \
-	rm -rf /tmp/hyperfine.deb
-
-# Install smug.
-RUN wget https://github.com/ivaaaan/smug/releases/download/v0.2.2/smug_0.2.2_Linux_x86_64.tar.gz \
-		-O /tmp/smug.tar.gz && \
-	tar xvf /tmp/smug.tar.gz -C /usr/local/bin smug && \
-	rm -rf /tmp/smug.tar.gz
 
 # When a user gains access to shell he will be put into a workspace directory.
 WORKDIR /opt/workspace
