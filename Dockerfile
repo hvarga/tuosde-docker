@@ -11,13 +11,11 @@ ENV TERM xterm-256color
 # Install all other packages.
 RUN apt-get update && yes | unminimize && DEBIAN_FRONTEND=noninteractive \
 	apt-get install -y \
-		ca-certificates curl apt-transport-https build-essential wget git-core \
-		unzip python less man-db zsh asciinema htop tmux cloc tree \
-		openssh-client shellcheck lsof p7zip zip gettext libtool \
-		libtool-bin autoconf automake pkg-config cmake clang libclang-dev \
-		neovim universal-ctags telnet python3-neovim ripgrep locales sshpass \
-		global sudo python3-virtualenv python3-dev gcc-multilib iputils-ping \
-		clang-format git-extras bitwise tmate inotify-tools rsync && \
+		ca-certificates curl apt-transport-https wget git-core unzip python \
+		less man-db zsh asciinema htop tmux cloc tree openssh-client telnet \
+		shellcheck lsof p7zip zip gettext neovim universal-ctags locales sudo \
+		python3-neovim ripgrep sshpass global python3-virtualenv python3-dev \
+		iputils-ping git-extras bitwise tmate inotify-tools rsync && \
 	rm -rf /var/lib/apt/lists/*
 
 # Configure system locale.
