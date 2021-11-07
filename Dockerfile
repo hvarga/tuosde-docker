@@ -30,10 +30,6 @@ ENV LANG=en_US.UTF-8 \
 	LC_MESSAGES=en_US.UTF-8 \
 	LC_COLLATE=en_US.UTF-8
 
-# Configure Neovim as a default system editor.
-ENV EDITOR=nvim \
-	VISUAL=nvim
-
 # Install sudoers configuration.
 COPY files/sudoers /etc/sudoers.d/
 RUN chmod 0440 /etc/sudoers.d/sudoers
@@ -55,6 +51,10 @@ RUN git clone --recursive https://github.com/sorin-ionescu/prezto.git \
 	sed -ri '/directory/d' /etc/zsh/prezto/runcoms/zpreztorc && \
 	sed -ri "s/'prompt'/'syntax-highlighting' \
 		'history-substring-search' 'prompt'/g" /etc/zsh/prezto/runcoms/zpreztorc
+
+# Configure Neovim as a default system editor.
+RUN echo "export EDITOR=nvim" >> /etc/zsh/zshrc && \
+	echo "export VISUAL=nvim" >> /etc/zsh/zshrc
 
 # Install fzf.
 RUN git clone --branch 0.23.1 --depth 1 https://github.com/junegunn/fzf.git \
