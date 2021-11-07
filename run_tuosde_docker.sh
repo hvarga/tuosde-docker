@@ -95,7 +95,7 @@ create_path "$workspace_path"
 create_path "$storage_path/home"
 create_path "$storage_path/data"
 
-podman run --privileged -it --rm -P \
+podman run --privileged -it --rm --network=host -P \
 	--user $(id -u):$(id -g) \
 	--userns=keep-id \
 	--tz=local \
