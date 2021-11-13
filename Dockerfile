@@ -12,10 +12,9 @@ ENV TERM xterm-256color
 RUN apt-get update && yes | unminimize && DEBIAN_FRONTEND=noninteractive \
 	apt-get install -y \
 		ca-certificates curl apt-transport-https wget git-core unzip python \
-		less man-db zsh asciinema htop tmux cloc tree openssh-client telnet \
-		shellcheck lsof p7zip zip gettext neovim universal-ctags locales sudo \
-		python3-neovim ripgrep sshpass global python3-virtualenv python3-dev \
-		iputils-ping git-extras bitwise tmate inotify-tools rsync w3m ncat && \
+		less man-db zsh asciinema htop tmux tree openssh-client telnet w3m \
+		shellcheck p7zip zip neovim universal-ctags locales sudo rsync ncat \
+		python3-neovim ripgrep python3-dev iputils-ping git-extras bitwise && \
 	rm -rf /var/lib/apt/lists/*
 
 # Configure system locale.
@@ -92,6 +91,11 @@ RUN wget https://packagecloud.io/github/git-lfs/packages/debian/buster/git-lfs_2
 	dpkg -i /tmp/git-lfs.deb && \
 	rm -rf /tmp/git-lfs.deb
 
+# Install nb.
+RUN wget https://raw.githubusercontent.com/xwmx/nb/6.6.0/nb -O /usr/local/bin/nb && \
+	chmod +x /usr/local/bin/nb && \
+	nb completions install --download
+
 # Install neovim configuration.
 COPY files/neovim_config /usr/share/nvim/sysinit.vim
 
@@ -121,11 +125,6 @@ COPY files/entrypoint.sh /usr/local/bin
 
 # When a user gains access to shell he will be put into a workspace directory.
 WORKDIR /opt/workspace
-
-# Install nb.
-RUN wget https://raw.githubusercontent.com/xwmx/nb/6.6.0/nb -O /usr/local/bin/nb && \
-	chmod +x /usr/local/bin/nb && \
-	nb completions install --download
 
 # Run entrypoint script.
 ENTRYPOINT ["entrypoint.sh"]
