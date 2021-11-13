@@ -46,6 +46,9 @@ display_help () {
 	echo "      general purpose storage of a user data."
 	echo "      Any change done inside of a TUOSDE container in both directories"
 	echo "      will reflect on a host filesystem also."
+	echo "  -i  Image to run."
+	echo "      Optional. If omitted, hvarga/tuosde-docker will be used by"
+	echo "      default."
 	echo "  -e  Executable to run when a container is started."
 	echo "      Optional. If omitted, /usr/bin/tmux will be used instead."
 	echo ""
@@ -68,8 +71,9 @@ script_name=$(basename $0)
 workspace_path=$(pwd)
 storage_path=$HOME/tuosde-docker
 executable_path="/usr/bin/tmux"
+image="hvarga/tuosde-docker"
 
-while getopts "hw:s:e:" opt; do
+while getopts "hw:s:i:e:" opt; do
 	case ${opt} in
 		h)
 			display_help
@@ -80,6 +84,9 @@ while getopts "hw:s:e:" opt; do
 			;;
 		s)
 			storage_path=$OPTARG
+			;;
+		i)
+			image=$OPTARG
 			;;
 		e)
 			executable_path=$OPTARG
@@ -107,5 +114,5 @@ podman run --privileged -it --rm --network=host -P \
 	-v "$HOME"/.Xauthority:/var/run/xauthority \
 	-v "$storage_path"/home:/home/$USER_NAME \
 	-v "$storage_path"/data:/opt/data \
-	hvarga/tuosde-docker \
+	$image \
 	"$executable_path"
