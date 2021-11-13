@@ -25,7 +25,7 @@ podman pull docker://hvarga/tuosde-docker
 Run the following command in the same folder as this `README.md`:
 
 ```shell
-docker build -t hvarga/tuosde-docker .
+podman build -t hvarga/tuosde-docker .
 ```
 
 ## Run
