@@ -14,7 +14,7 @@ After you have gained the image, follow chapter [Run](#run) to run the image.
 
 ## Pull
 
-Run the following command:
+Run the following command to download a pre-built image from the Docker Hub:
 
 ```shell
 podman pull docker://hvarga/tuosde-docker
@@ -22,7 +22,8 @@ podman pull docker://hvarga/tuosde-docker
 
 ## Build
 
-Run the following command in the same folder as this `README.md`:
+Run the following command in the same folder as this `README.md` to build the
+image from the source:
 
 ```shell
 podman build -t hvarga/tuosde-docker .
@@ -39,9 +40,10 @@ sudo wget \
 sudo chmod +x /usr/local/bin/run_tuosde_docker.sh
 ```
 
-In case of updates, the same commands can also be used to update the already
-installed `run_tuosde_docker.sh` script with the newer version from the
-repository.
+Note that `run_tuosde_docker.sh` script changes from time to time. It is wise to
+update the local installation after each pull or build. The same commands listed
+above can be used to update the already installed `run_tuosde_docker.sh` script
+with the newer version from the repository.
 
 When script is installed, run the following command in a root directory of your
 project:
