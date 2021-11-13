@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The aim of this repository is to encapsulate the developlement environment
+The aim of this repository is to encapsulate the development environment
 described in [TUOSDE](https://www.tuosde.org/) in a form of a OCI Container
 Image.
 
