@@ -12,7 +12,7 @@ ENV TERM xterm-256color
 RUN apt-get update && yes | unminimize && DEBIAN_FRONTEND=noninteractive \
 	apt-get install -y \
 		ca-certificates curl apt-transport-https wget git-core unzip python \
-		less man-db zsh asciinema htop tmux tree openssh-client telnet w3m \
+		less man-db zsh asciinema htop tmux tree openssh-client telnet w3m make \
 		shellcheck p7zip zip neovim universal-ctags locales sudo rsync ncat \
 		python3-neovim ripgrep python3-dev iputils-ping git-extras bitwise && \
 	rm -rf /var/lib/apt/lists/*
