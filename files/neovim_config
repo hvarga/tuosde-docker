@@ -55,6 +55,12 @@ set nowrap
 set nospell
 set list
 
+function! TUOSDESourceFileIfExists(file)
+  if filereadable(expand(a:file))
+    exe 'source' a:file
+  endif
+endfunction
+
 call plug#begin('/usr/share/nvim/runtime/plugged')
 Plug 'vim-airline/vim-airline', { 'commit': 'ad716f1df4f89589c0b13b9a39e68a10adba5e13' }
 Plug 'vim-airline/vim-airline-themes', { 'commit': '97cf3e6e638f936187d5f6e9b5eb1bdf0a4df256' }
@@ -84,6 +90,7 @@ Plug 'samoshkin/vim-mergetool', { 'commit': '0275a85256ad173e3cde586d54f66566c01
 Plug 'machakann/vim-highlightedyank', { 'commit': '931cc6bd53e4a1fdbe592751f0e13c0e401f0a49' }
 Plug 'preservim/tagbar', { 'commit': 'bb8ca482a5d14a771f718bd794b5945be3a6ff74' }
 Plug 'aklt/plantuml-syntax', { 'commit': '405186847a44c16dd039bb644541b4c8fbdab095' }
+call TUOSDESourceFileIfExists("/usr/share/nvim/additional_plugins.vim")
 call plug#end()
 
 set background=dark
@@ -177,3 +184,5 @@ let g:tagbar_width = 70
 let g:tagbar_silent = 1
 
 nnoremap ? :help tuosde<CR>
+
+call TUOSDESourceFileIfExists("/usr/share/nvim/additional_configuration.vim")
