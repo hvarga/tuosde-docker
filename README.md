@@ -2,23 +2,55 @@
 
 ## Introduction
 
-The aim of this repository is to encapsulate the development environment
-described in [TUOSDE](https://www.tuosde.org/) in a form of a OCI Container
-Image.
+The aim of this repository is to encapsulate a development environment in a form
+of OCI container that provides a system-independent mouseless terminal-based
+development environment consisting of an open source software. Hence, the naming
+of "TUOSDE" which is an acronym that stands for "The Ultimate Open Source
+Development Environment".
 
-To get this image, either follow chapter [Pull](#pull) to download the pre-built
-image from the Docker Hub or chapter [Build](#build) to build it yourself. The
-easiest and recommended way is to download the pre-built image from Docker Hub.
+It is a package of a very opinionated and carefully hand-picked and configured
+software that grew organically over 10+ years of work experience gathered from
+best engineers over 5+ companies with the aim to provide a holistic and
+integrated experience.
 
-After you have gained the image, follow chapter [Run](#run) to run the image.
+To get container, ensure that you have satisfied [Requirements](#Requirements)
+and then follow chapter [Build](#build) to build the OCI image. Finally, follow
+chapter [Run](#run) to run the OCI container.
 
-## Pull
+## Motivation
 
-Run the following command to download a pre-built image from the Docker Hub:
+It started as a manual installation of a personalized software like you usually
+do but with versioned configuration files that can be downloaded and applied to
+your host operating system.
 
-```shell
-podman pull docker://hvarga/tuosde-docker
-```
+From there, it grew to an unattended Arch Linux installation script that allowed
+user to install operating system together with all the software and its
+configuration without any user inputs.
+
+Later on, it was converted to a tarball archive that provided all the
+dependancies and tools without a need to actually install them on a host
+operating system as it was running on a chroot jail environment. That way, user
+could use any GNU/Linux operating system running on a host machine.
+
+Finally, it was ported to an OCI compliant container engine which is used till
+this day. Due to this, user can use any major operating system on his host while
+still be able to have all his software that he actually cares about. The other
+major benefit is that, due to an OCI image and Docker, EVERYTHING is now kept in
+a Git repository. This self contained, small in size, text-only repository
+practically stores a source code which is built by Podman. The output of this
+build is OCI image, a blob of over 1GB of data that can be run by Podman which
+grants you an access to your development environment.
+
+## Requirements
+
+The tuosde-docker is a userspace software and as such requires a host operating
+system to run. The tuosde-docker supports all major ones like GNU/Linux, Windows
+and macOS.
+
+To build an OCI image and run a container from it, you need to have Podman
+installed on your host system. Follow your host operating system package manager
+or seek an online help to do so as installation steps are out-of-scope of this
+document.
 
 ## Build
 
@@ -31,7 +63,7 @@ podman build -t hvarga/tuosde-docker .
 
 ## Run
 
-Install the shell script needed for running `hvarga/tuosde-docker` Docker image.
+Install the shell script needed for running `hvarga/tuosde-docker` Podman image.
 
 ```
 sudo wget \

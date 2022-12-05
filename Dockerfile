@@ -8,13 +8,23 @@ LABEL maintainer="hrvoje.varga@gmail.com"
 # colors.
 ENV TERM xterm-256color
 
-# Install all other packages.
+# Install core packages.
 RUN apt-get update && yes | unminimize && DEBIAN_FRONTEND=noninteractive \
 	apt-get install -y \
-		ca-certificates curl apt-transport-https wget git-core unzip python \
-		less man-db zsh asciinema htop tmux tree openssh-client telnet w3m make \
-		shellcheck p7zip zip neovim universal-ctags locales sudo rsync ncat \
-		python3-neovim ripgrep python3-dev iputils-ping git-extras bitwise && \
+		ca-certificates curl apt-transport-https wget unzip python less man-db \
+		zsh asciinema htop tmux tree openssh-client telnet w3m make shellcheck \
+		p7zip zip universal-ctags locales sudo rsync ncat python3-neovim \
+		python3-dev iputils-ping bitwise build-essential \
+		software-properties-common && \
+	rm -rf /var/lib/apt/lists/*
+
+# Add PPA repositories.
+RUN add-apt-repository ppa:git-core/ppa
+
+# Install packages from PPA repositories.
+RUN apt-get update && yes | unminimize && DEBIAN_FRONTEND=noninteractive \
+	apt-get install -y \
+		git-core git-extras && \
 	rm -rf /var/lib/apt/lists/*
 
 # Configure system locale.
@@ -51,12 +61,27 @@ RUN git clone --recursive https://github.com/sorin-ionescu/prezto.git \
 	sed -ri "s/'prompt'/'syntax-highlighting' \
 		'history-substring-search' 'prompt'/g" /etc/zsh/prezto/runcoms/zpreztorc
 
+# Install Neovim.
+# FIXME: Plugin man.vim is, for some reason, installed, even though it is not
+# part of Neovim package. This plugin MUST not be installed as it is not
+# compatible with Neovim. This is even checked by Neovim using :checkhealth.
+# There should be a better way to remove this plugin but, for the time being,
+# this is done manually.
+RUN wget https://github.com/neovim/neovim/releases/download/v0.8.1/nvim-linux64.tar.gz \
+		-O /tmp/nvim.tar.gz && \
+	tar xzvf /tmp/nvim.tar.gz -C /tmp/ && \
+	cp -r /tmp/nvim-linux64/* /usr && \
+	rm -rf /tmp/nvim.tar.gz && \
+	rm -rf /lib/nvim/parser && \
+	rm -rf /usr/share/nvim/runtime/plugin/man.vim && \
+	rm -rf /usr/share/nvim/runtime/autoload/man.vim
+
 # Configure Neovim as a default system editor.
 RUN echo "export EDITOR=nvim" >> /etc/zsh/zshrc && \
 	echo "export VISUAL=nvim" >> /etc/zsh/zshrc
 
 # Install fzf.
-RUN git clone --branch 0.23.1 --depth 1 https://github.com/junegunn/fzf.git \
+RUN git clone --branch 0.35.1 --depth 1 https://github.com/junegunn/fzf.git \
 		/tmp/fzf && \
 	/tmp/fzf/install --bin && \
 	cp /tmp/fzf/bin/* /usr/local/bin && \
@@ -78,26 +103,33 @@ RUN mkdir -p /usr/share/nvim/runtime/autoload && \
 		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Install nnn.
-RUN wget https://github.com/jarun/nnn/releases/download/v4.0/nnn_4.0-1_ubuntu20.04.amd64.deb \
-	-O /tmp/nnn.deb && \
-	dpkg -i /tmp/nnn.deb && \
-	rm -rf /tmp/nnn.deb
+RUN wget https://github.com/jarun/nnn/releases/download/v4.7/nnn-musl-static-4.7.x86_64.tar.gz \
+		-O /tmp/nnn.tar.gz && \
+	tar xvf /tmp/nnn.tar.gz -C /tmp/ && \
+	mv /tmp/nnn-musl-static /usr/bin/nnn && \
+	rm -rf /tmp/nnn.tar.gz
 ENV NNN_USE_EDITOR=1
-RUN echo 'alias nnn="nnn -c -o"' >> /etc/zsh/zshrc
 
 # Install Git LFS.
 RUN wget https://packagecloud.io/github/git-lfs/packages/debian/buster/git-lfs_2.13.1_amd64.deb/download \
-	-O /tmp/git-lfs.deb && \
+		-O /tmp/git-lfs.deb && \
 	dpkg -i /tmp/git-lfs.deb && \
 	rm -rf /tmp/git-lfs.deb
 
-# Install nb.
-RUN wget https://raw.githubusercontent.com/xwmx/nb/6.6.0/nb -O /usr/local/bin/nb && \
-	chmod +x /usr/local/bin/nb && \
-	nb completions install --download
+# Install fd.
+RUN wget https://github.com/sharkdp/fd/releases/download/v8.5.2/fd-musl_8.5.2_amd64.deb \
+		-O /tmp/fd.deb && \
+	dpkg -i /tmp/fd.deb && \
+	rm -rf /tmp/fd.deb
 
-# Install neovim configuration.
-COPY files/neovim_config /usr/share/nvim/sysinit.vim
+# Install ripgrep.
+RUN wget https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb \
+		-O /tmp/ripgrep.deb && \
+	dpkg -i /tmp/ripgrep.deb && \
+	rm -rf /tmp/ripgrep.deb
+
+# Install Neovim configuration.
+COPY files/config.vim /usr/share/nvim/sysinit.vim
 
 # Install Neovim TUOSDE documentation.
 COPY files/tuosde.txt /usr/share/nvim/runtime/doc/tuosde.txt
