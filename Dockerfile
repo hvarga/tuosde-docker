@@ -12,10 +12,9 @@ ENV TERM xterm-256color
 RUN apt-get update && yes | unminimize && DEBIAN_FRONTEND=noninteractive \
 	apt-get install -y \
 		ca-certificates curl apt-transport-https wget unzip python less man-db \
-		zsh asciinema htop tmux tree openssh-client telnet w3m make shellcheck \
-		p7zip zip universal-ctags locales sudo rsync ncat python3-neovim \
-		python3-dev iputils-ping bitwise build-essential \
-		software-properties-common && \
+		zsh asciinema htop tmux tree openssh-client telnet w3m make p7zip zip \
+		universal-ctags locales sudo rsync ncat python3-neovim python3-dev \
+		iputils-ping bitwise build-essential software-properties-common && \
 	rm -rf /var/lib/apt/lists/*
 
 # Add PPA repositories.
@@ -79,6 +78,13 @@ RUN wget https://github.com/neovim/neovim/releases/download/v0.8.1/nvim-linux64.
 # Configure Neovim as a default system editor.
 RUN echo "export EDITOR=nvim" >> /etc/zsh/zshrc && \
 	echo "export VISUAL=nvim" >> /etc/zsh/zshrc
+
+# Install ShellCheck.
+RUN wget https://github.com/koalaman/shellcheck/releases/download/v0.8.0/shellcheck-v0.8.0.linux.x86_64.tar.xz \
+		-O /tmp/shellcheck.tar.xz && \
+	tar xvf /tmp/shellcheck.tar.xz -C /tmp/ && \
+	mv /tmp/shellcheck-v0.8.0/shellcheck /usr/bin/shellcheck && \
+	rm -rf /tmp/shellcheck.tar.xz /tmp/shellcheck-v0.8.0
 
 # Install fzf.
 RUN git clone --branch 0.35.1 --depth 1 https://github.com/junegunn/fzf.git \
