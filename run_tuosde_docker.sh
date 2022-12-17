@@ -56,7 +56,6 @@ display_help () {
 
 	See Also
 	  GitHub: https://github.com/hvarga/tuosde-docker
-	  Docker Hub: https://hub.docker.com/r/hvarga/tuosde-docker
 	  Podman: https://podman.io/
 	EOF
 }
