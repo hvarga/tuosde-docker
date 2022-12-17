@@ -119,14 +119,9 @@ set signcolumn=yes
 let g:EasyMotion_off_screen_search = 0
 let g:EasyMotion_verbose = 0
 
-xmap <C-S-Down> <Plug>(textmanip-move-down)
-xmap <C-S-Up> <Plug>(textmanip-move-up)
-xmap <C-S-Left> <Plug>(textmanip-move-left)
-xmap <C-S-Right> <Plug>(textmanip-move-right)
-
 hi link illuminatedWord Visual
 
-nnoremap cob :set background=<C-R>=&background == 'dark' ? 'light' : 'dark'<CR><CR>
+nnoremap <leader>cb :set background=<C-R>=&background == 'dark' ? 'light' : 'dark'<CR><CR>
 
 let g:gutentags_generate_on_new = 1
 let g:gutentags_generate_on_missing = 1
@@ -144,21 +139,13 @@ let g:gutentags_ctags_extra_args = [
 
 let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/')
 
-nnoremap ti :IlluminationToggle<CR>
-
-let g:SuperTabCrMapping = 1
-
 nnoremap x d
 xnoremap x d
 
 let g:mwDefaultHighlightingPalette = 'maximum'
 
-let g:FerretMap=0
-nmap <leader>fs <Plug>(FerretAck)
-nmap <leader>fr <Plug>(FerretAcks)
-
-nmap <Space>h :split<CR>
-nmap <Space>v :vsplit<CR>
+nmap <leader>sh :split<CR>
+nmap <leader>sv :vsplit<CR>
 
 let g:vim_search_pulse_duration = 200
 
@@ -314,6 +301,12 @@ command_center.add({
     cmd = "<CMD>GFiles<CR>",
     keys = { "n", "<Space>f", noremap },
     category = "git",
+  },
+  {
+    desc = "Workspace files (all)",
+    cmd = "<CMD>Files<CR>",
+    keys = { "n", "<Space>F", noremap },
+    category = "fzf",
   },
   {
     desc = "Buffer search",
