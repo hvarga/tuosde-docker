@@ -250,6 +250,7 @@ require('telekasten').setup {
 END
 
 lua << END
+local builtin = require("nnn").builtin
 require("nnn").setup {
 	picker = {
 		cmd = "nnn",
@@ -272,7 +273,9 @@ require("nnn").setup {
 	},
 	auto_close = false,
 	replace_netrw = picker,
-	mappings = {},
+	mappings = {
+		{ "<C-t>", builtin.open_in_tab },
+	},
 	buflisted = false,
 	quitcd = nil,
 	offset = false,
