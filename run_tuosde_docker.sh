@@ -99,16 +99,14 @@ create_path "$storage_path/data"
 XAUTHORITY=${XAUTHORITY:-"$HOME/.Xauthority"}
 
 podman run --privileged -it --rm --network=host -P \
-	--user $(id -u):$(id -g) \
 	--userns=keep-id \
 	--tz=local \
-	-e USER_NAME=$(id -un) \
 	-e DISPLAY="$DISPLAY" \
 	-e XAUTHORITY=/var/run/xauthority \
 	-v "$workspace_path":/opt/workspace \
 	-v /tmp/.X11-unix:/tmp/.X11-unix \
 	-v "$XAUTHORITY":/var/run/xauthority \
-	-v "$storage_path"/home:/home/$USER_NAME \
+	-v "$storage_path"/home:/home/developer \
 	-v "$storage_path"/data:/opt/data \
 	$image \
 	"$executable_path"

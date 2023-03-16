@@ -58,7 +58,9 @@ RUN git clone --recursive https://github.com/sorin-ionescu/prezto.git \
 		/etc/zsh/prezto/runcoms/zpreztorc && \
 	sed -ri '/directory/d' /etc/zsh/prezto/runcoms/zpreztorc && \
 	sed -ri "s/'prompt'/'syntax-highlighting' \
-		'history-substring-search' 'prompt'/g" /etc/zsh/prezto/runcoms/zpreztorc
+		'history-substring-search' 'prompt'/g" \
+		/etc/zsh/prezto/runcoms/zpreztorc && \
+	rm -rf /usr/share/zsh/*/scripts/newuser
 
 # Install Neovim.
 # FIXME: Plugin man.vim is, for some reason, installed, even though it is not
@@ -158,11 +160,10 @@ COPY files/gitconfig /etc/gitconfig
 # Install SSH configuration.
 COPY files/ssh_config.conf /etc/ssh/ssh_config.d/
 
-# Install entrypoint script.
-COPY files/entrypoint.sh /usr/local/bin
+# Create and use a new user inside of a container that will be mapped to a user
+# from a host during the runtime.
+RUN useradd -d /home/developer -m -s /bin/zsh -U developer
+USER developer
 
 # When a user gains access to shell he will be put into a workspace directory.
 WORKDIR /opt/workspace
-
-# Run entrypoint script.
-ENTRYPOINT ["entrypoint.sh"]
