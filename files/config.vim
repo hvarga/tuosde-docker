@@ -90,7 +90,7 @@ Plug 'renerocksai/calendar-vim', { 'commit': 'a7e73e02c92566bf427b2a1d6a61a8f235
 Plug 'nvim-tree/nvim-web-devicons', { 'commit': '3b1b794bc17b7ac3df3ae471f1c18f18d1a0f958' }
 Plug 'luukvbaal/nnn.nvim', { 'commit': '17f05c306e6906b4b6cd477e603697fd352960e8' }
 Plug 'FeiyouG/command_center.nvim', { 'commit': '0d820c438c871fe31ed942bc592a070da1564141' }
-Plug 'junegunn/fzf.vim', { 'commit': '9ceac718026fd39498d95ff04fa04d3e40c465d7' }
+Plug 'ibhagwan/fzf-lua', { 'commit': '5fe2a62fec9e4f056846a20b3770da811ba4ccf3' }
 call TUOSDESourceFileIfExists("/usr/share/nvim/additional_plugins.vim")
 call plug#end()
 
@@ -301,37 +301,37 @@ command_center.add({
 command_center.add({
   {
     desc = "Workspace files",
-    cmd = "<CMD>GFiles<CR>",
+    cmd = "<CMD>FzfLua git_files<CR>",
     keys = { "n", "<Space>f", noremap },
     category = "git",
   },
   {
     desc = "Workspace files (all)",
-    cmd = "<CMD>Files<CR>",
+    cmd = "<CMD>FzfLua files<CR>",
     keys = { "n", "<Space>F", noremap },
     category = "fzf",
   },
   {
     desc = "Buffer search",
-    cmd = "<CMD>BLines<CR>",
+    cmd = "<CMD>FzfLua blines<CR>",
     keys = { "n", "<Space>s", noremap },
     category = "rg",
   },
   {
     desc = "Workspace search",
-    cmd = "<CMD>Rg<CR>",
+    cmd = "<CMD>FzfLua grep_project<CR>",
     keys = { "n", "<Space>S", noremap },
     category = "rg",
   },
   {
     desc = "Workspace tags",
-    cmd = "<CMD>Tags<CR>",
+    cmd = "<CMD>FzfLua tags<CR>",
     keys = { "n", "<Space>T", noremap },
     category = "ctags",
   },
   {
     desc = "Buffer tags",
-    cmd = "<CMD>BTags<CR>",
+    cmd = "<CMD>FzfLua btags<CR>",
     keys = { "n", "<Space>t", noremap },
     category = "ctags",
   },
@@ -343,13 +343,13 @@ command_center.add({
   },
   {
     desc = "Workspace commits",
-    cmd = "<CMD>Commits<CR>",
+    cmd = "<CMD>FzfLua git_commits<CR>",
     keys = { "n", "<Space>C", noremap },
     category = "git",
   },
   {
     desc = "Buffer commits",
-    cmd = "<CMD>BCommits<CR>",
+    cmd = "<CMD>FzfLua git_bcommits<CR>",
     keys = { "n", "<Space>c", noremap },
     category = "git",
   },

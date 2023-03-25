@@ -89,13 +89,12 @@ RUN wget https://github.com/koalaman/shellcheck/releases/download/v0.8.0/shellch
 	rm -rf /tmp/shellcheck.tar.xz /tmp/shellcheck-v0.8.0
 
 # Install fzf.
-RUN git clone --branch 0.35.1 --depth 1 https://github.com/junegunn/fzf.git \
+RUN git clone --branch 0.38.0 --depth 1 https://github.com/junegunn/fzf.git \
 		/tmp/fzf && \
 	/tmp/fzf/install --bin && \
 	cp /tmp/fzf/bin/* /usr/local/bin && \
 	mkdir -p /usr/share/fzf/ && \
 	cp /tmp/fzf/shell/*.zsh /usr/share/fzf/ && \
-	cp /tmp/fzf/plugin/fzf.vim /usr/share/nvim/runtime/autoload && \
 	rm -rf /tmp/fzf && \
 	echo "source /usr/share/fzf/key-bindings.zsh" >> /etc/zsh/zshrc && \
 	echo "source /usr/share/fzf/completion.zsh" >> /etc/zsh/zshrc && \
