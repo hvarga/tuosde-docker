@@ -90,7 +90,7 @@ Plug 'renerocksai/calendar-vim', { 'commit': 'a7e73e02c92566bf427b2a1d6a61a8f235
 Plug 'nvim-tree/nvim-web-devicons', { 'commit': '3b1b794bc17b7ac3df3ae471f1c18f18d1a0f958' }
 Plug 'luukvbaal/nnn.nvim', { 'commit': '17f05c306e6906b4b6cd477e603697fd352960e8' }
 Plug 'FeiyouG/command_center.nvim', { 'commit': '0d820c438c871fe31ed942bc592a070da1564141' }
-Plug 'ibhagwan/fzf-lua', { 'commit': '5fe2a62fec9e4f056846a20b3770da811ba4ccf3' }
+Plug 'ibhagwan/fzf-lua', { 'commit': '02bde5fae96772729004743f0f309c35c5182b83' }
 call TUOSDESourceFileIfExists("/usr/share/nvim/additional_plugins.vim")
 call plug#end()
 
