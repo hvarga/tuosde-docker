@@ -135,6 +135,12 @@ RUN wget https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_
 	dpkg -i /tmp/ripgrep.deb && \
 	rm -rf /tmp/ripgrep.deb
 
+# Install bat.
+RUN wget https://github.com/sharkdp/bat/releases/download/v0.23.0/bat-musl_0.23.0_amd64.deb \
+		-O /tmp/bat.deb && \
+	dpkg -i /tmp/bat.deb && \
+	rm -rf /tmp/bat.deb
+
 # Install Neovim configuration.
 COPY files/config.vim /usr/share/nvim/sysinit.vim
 

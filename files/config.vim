@@ -394,3 +394,59 @@ telescope.setup {
 
 telescope.load_extension('command_center')
 END
+
+lua << END
+require('fzf-lua').setup {
+  "max-perf",
+  winopts = {
+    fullscreen       = true,
+    preview = {
+      vertical       = 'down:40%',
+      horizontal     = 'right:40%',
+      layout         = 'flex',
+      flip_columns   = 120,
+    },
+  },
+  files = {
+    prompt            = 'Files: ',
+    git_icons         = false,
+    file_icons        = false,
+    color_icons       = false,
+  },
+  git = {
+    files = {
+      prompt        = 'GitFiles: ',
+      git_icons     = false,
+      file_icons    = false,
+      color_icons   = false,
+    },
+    commits = {
+      prompt        = 'Commits: ',
+    },
+    bcommits = {
+      prompt        = 'BCommits: ',
+    },
+  },
+  grep = {
+    prompt            = 'Rg: ',
+    input_prompt      = 'Grep For: ',
+    git_icons         = false,
+    file_icons        = false,
+    color_icons       = false,
+  },
+  tags = {
+    prompt                = 'Tags: ',
+    ctags_file            = nil,
+    file_icons            = false,
+    git_icons             = false,
+    color_icons           = false,
+  },
+  btags = {
+    prompt                = 'BTags: ',
+    ctags_file            = nil,
+    file_icons            = false,
+    git_icons             = false,
+    color_icons           = false,
+  },
+}
+END
