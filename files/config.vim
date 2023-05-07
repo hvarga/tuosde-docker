@@ -61,58 +61,49 @@ function! TUOSDESourceFileIfExists(file)
   endif
 endfunction
 
-call plug#begin('/usr/share/nvim/runtime/plugged')
-Plug 'nvim-lualine/lualine.nvim', { 'commit': '9d177b668c18781c53abde92116f141f3d84b04c' }
-Plug 'tpope/vim-fugitive', { 'commit': '49cc58573e746d02024110d9af99e95994ea4b72' }
-Plug 'airblade/vim-gitgutter', { 'commit': '400a12081f188f3fb639f8f962456764f39c6ff1' }
-Plug 'easymotion/vim-easymotion', { 'commit': 'b3cfab2a6302b3b39f53d9fd2cd997e1127d7878' }
-Plug 'kshenoy/vim-signature', { 'commit': '6bc3dd1294a22e897f0dcf8dd72b85f350e306bc' }
-Plug 'conradirwin/vim-bracketed-paste', { 'commit': 'c4c639f3cacd1b874ed6f5f196fac772e089c932' }
-Plug 'jeffkreeftmeijer/vim-numbertoggle', { 'commit': '075b7478777e694fbac330ee34a74590dad0fee1' }
-Plug 'RRethy/vim-illuminate', { 'commit': '8fe150bd775f659da7e40ea2d3ad7473e6d29494' }
-Plug 'ludovicchabant/vim-gutentags', { 'commit': '1337b1891b9d98d6f4881982f27aa22b02c80084' }
-Plug 'tpope/vim-commentary', { 'commit': 'e87cd90dc09c2a203e13af9704bd0ef79303d755' }
-Plug 'rbgrouleff/bclose.vim', { 'commit': '99018b4a2dd18aea1cbd3aa23565b01a0f8c5b73' }
-Plug 'svermeulen/vim-cutlass', { 'commit': '7afd649415541634c8ce317fafbc31cd19d57589' }
-Plug 'inkarkat/vim-ingo-library', { 'commit': '51703e0f5fc73836b8e5be222f6eebde1891a664' }
-Plug 'inkarkat/vim-mark', { 'commit': '19757f529eab5bd3eb406ac03f62c961c75a17dc' }
-Plug 'farmergreg/vim-lastplace', { 'commit': 'd522829d810f3254ca09da368a896c962d4a3d61' }
-Plug 'rhysd/committia.vim', { 'commit': '1d288281586d1e6b52646a4c412df3dd3a2fe231' }
-Plug 'machakann/vim-highlightedyank', { 'commit': '931cc6bd53e4a1fdbe592751f0e13c0e401f0a49' }
-Plug 'preservim/tagbar', { 'commit': '6c3e15ea4a1ef9619c248c2b1eced56a47b61a9e' }
-Plug 'nvim-lua/plenary.nvim', { 'commit': '4b7e52044bbb84242158d977a50c4cbcd85070c7' }
-Plug 'nvim-telescope/telescope.nvim', { 'commit': '7a4ffef931769c3fe7544214ed7ffde5852653f6' }
-Plug 'nvim-treesitter/nvim-treesitter', { 'commit': '24caa23402247cf03cfcdd54de8cdb8ed00690ba', 'do': ':TSUpdate' }
-Plug 'folke/tokyonight.nvim', { 'commit': '62b4e89ea1766baa3b5343ca77d62c817f5f48d0' }
-Plug 'sindrets/diffview.nvim', { 'commit': 'f32a7224096cca11c3c91b0dd412808e63f3d720' }
-Plug 'renerocksai/telekasten.nvim', { 'commit': 'ff85b22fb4a14ec0e67abe70a00e9681b55d88db' }
-Plug 'renerocksai/calendar-vim', { 'commit': 'a7e73e02c92566bf427b2a1d6a61a8f23542cc21' }
-Plug 'nvim-tree/nvim-web-devicons', { 'commit': '3b1b794bc17b7ac3df3ae471f1c18f18d1a0f958' }
-Plug 'luukvbaal/nnn.nvim', { 'commit': '17f05c306e6906b4b6cd477e603697fd352960e8' }
-Plug 'FeiyouG/command_center.nvim', { 'commit': '0d820c438c871fe31ed942bc592a070da1564141' }
-Plug 'ibhagwan/fzf-lua', { 'commit': 'd49f79fbdaf5247ce694637555e8cd503f6fc05f' }
-call TUOSDESourceFileIfExists("/usr/share/nvim/additional_plugins.vim")
-call plug#end()
-
 lua << END
-require("tokyonight").setup {
-  style = "moon",
-  light_style = "day",
-  transparent = false,
-  terminal_colors = true,
-  styles = {
-    sidebars = "dark",
-    floats = "normal",
-  },
-  sidebars = { "qf", "help", "nnn", "tagbar" },
-  day_brightness = 0.3,
-  hide_inactive_statusline = true,
-  dim_inactive = true,
-  lualine_bold = false,
-}
-END
+local lazypath = "/usr/share/nvim/plugins/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "--single-branch",
+    "https://github.com/folke/lazy.nvim.git",
+    lazypath,
+  })
+end
+vim.opt.runtimepath:prepend(lazypath)
 
-colorscheme tokyonight
+local plugins = {
+  {'nvim-lualine/lualine.nvim', commit = '9d177b668c18781c53abde92116f141f3d84b04c'},
+  {'tpope/vim-fugitive', commit = '49cc58573e746d02024110d9af99e95994ea4b72'},
+  {'airblade/vim-gitgutter', commit = '400a12081f188f3fb639f8f962456764f39c6ff1'},
+  {'easymotion/vim-easymotion', commit = 'b3cfab2a6302b3b39f53d9fd2cd997e1127d7878'},
+  {'jeffkreeftmeijer/vim-numbertoggle', commit = '075b7478777e694fbac330ee34a74590dad0fee1'},
+  {'ludovicchabant/vim-gutentags', commit = '1337b1891b9d98d6f4881982f27aa22b02c80084'},
+  {'tpope/vim-commentary', commit = 'e87cd90dc09c2a203e13af9704bd0ef79303d755'},
+  {'svermeulen/vim-cutlass', commit = '7afd649415541634c8ce317fafbc31cd19d57589'},
+  {'farmergreg/vim-lastplace', commit = 'd522829d810f3254ca09da368a896c962d4a3d61'},
+  {'rhysd/committia.vim', commit = '1d288281586d1e6b52646a4c412df3dd3a2fe231'},
+  {'preservim/tagbar', commit = '6c3e15ea4a1ef9619c248c2b1eced56a47b61a9e'},
+  {'nvim-lua/plenary.nvim', commit = '9ac3e9541bbabd9d73663d757e4fe48a675bb054'},
+  {'nvim-telescope/telescope.nvim', commit = '7a4ffef931769c3fe7544214ed7ffde5852653f6'},
+  {'nvim-treesitter/nvim-treesitter', commit = '24caa23402247cf03cfcdd54de8cdb8ed00690ba'},
+  {'sindrets/diffview.nvim', commit = 'f9ddbe798cb92854a383e2377482a49139a52c3d'},
+  {'renerocksai/telekasten.nvim', commit = 'ff85b22fb4a14ec0e67abe70a00e9681b55d88db'},
+  {'renerocksai/calendar-vim', commit = 'a7e73e02c92566bf427b2a1d6a61a8f23542cc21'},
+  {'nvim-tree/nvim-web-devicons', commit = '3b1b794bc17b7ac3df3ae471f1c18f18d1a0f958'},
+  {'luukvbaal/nnn.nvim', commit = '17f05c306e6906b4b6cd477e603697fd352960e8'},
+  {'FeiyouG/command_center.nvim', commit = '0d820c438c871fe31ed942bc592a070da1564141'},
+  {'ibhagwan/fzf-lua', commit = 'd49f79fbdaf5247ce694637555e8cd503f6fc05f'},
+  {'navarasu/onedark.nvim', commit = '82cad746101300aa2fdea5f4d121c51c23bab8bd'},
+}
+
+require("lazy").setup(plugins, {
+  root = "/usr/share/nvim/plugins",
+})
+END
 
 set signcolumn=yes
 
@@ -147,8 +138,6 @@ let g:mwDefaultHighlightingPalette = 'maximum'
 nmap <leader>sh :split<CR>
 nmap <leader>sv :vsplit<CR>
 
-let g:vim_search_pulse_duration = 200
-
 let g:tagbar_compact = 1
 let g:tagbar_width = 70
 let g:tagbar_silent = 1
@@ -159,7 +148,7 @@ lua << END
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'tokyonight',
+    theme = 'onedark',
     component_separators = { left = '|', right = '|'},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {
@@ -252,33 +241,33 @@ END
 lua << END
 local builtin = require("nnn").builtin
 require("nnn").setup {
-	picker = {
-		cmd = "nnn",
-		style = {
-			width = 0.4,
-			height = 0.6,
-			xoffset = 0.5,
-			yoffset = 0.5,
-			border = "single"
-		},
-		session = "",
-	},
-	auto_open = {
-		setup = nil,
-		tabpage = nil,
-		empty = false,
-		ft_ignore = {
-			"gitcommit",
-		}
-	},
-	auto_close = false,
-	replace_netrw = picker,
-	mappings = {
-		{ "<C-t>", builtin.open_in_tab },
-	},
-	buflisted = false,
-	quitcd = nil,
-	offset = false,
+  picker = {
+    cmd = "nnn",
+    style = {
+      width = 0.4,
+      height = 0.6,
+      xoffset = 0.5,
+      yoffset = 0.5,
+      border = "single"
+    },
+    session = "",
+  },
+  auto_open = {
+    setup = nil,
+    tabpage = nil,
+    empty = false,
+    ft_ignore = {
+      "gitcommit",
+    }
+  },
+  auto_close = false,
+  replace_netrw = picker,
+  mappings = {
+    { "<C-t>", builtin.open_in_tab },
+  },
+  buflisted = false,
+  quitcd = nil,
+  offset = false,
 }
 END
 
@@ -450,3 +439,25 @@ require('fzf-lua').setup {
   },
 }
 END
+
+lua << END
+require('nvim-treesitter.configs').setup {
+  ensure_installed = { "c", "lua", "vim", "dockerfile", "markdown" },
+  sync_install = true,
+  auto_install = true,
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+}
+END
+
+lua << END
+local onedark = require("onedark")
+onedark.setup {
+  style = 'dark'
+}
+onedark.load()
+END
+
+noremap <Tab><Tab> :set invlist<CR>

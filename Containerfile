@@ -103,12 +103,6 @@ RUN git clone --branch 0.38.0 --depth 1 https://github.com/junegunn/fzf.git \
 	echo "export FZF_DEFAULT_OPTS='--height 40% --reverse'" \
 		>> /etc/zsh/zshrc
 
-# Install Neovim plugin manager.
-RUN mkdir -p /usr/share/nvim/runtime/autoload && \
-	mkdir -p /usr/share/nvim/runtime/plugged && \
-	curl -sfLo /usr/share/nvim/runtime/autoload/plug.vim --create-dirs \
-		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
 # Install nnn.
 RUN wget https://github.com/jarun/nnn/releases/download/v4.7/nnn-musl-static-4.7.x86_64.tar.gz \
 		-O /tmp/nnn.tar.gz && \
@@ -141,15 +135,15 @@ RUN wget https://github.com/sharkdp/bat/releases/download/v0.23.0/bat-musl_0.23.
 	dpkg -i /tmp/bat.deb && \
 	rm -rf /tmp/bat.deb
 
-# Install Neovim configuration.
-COPY files/config.vim /usr/share/nvim/sysinit.vim
+# Install Git configuration.
+COPY files/gitconfig /etc/gitconfig
 
-# Install Neovim TUOSDE documentation.
-COPY files/tuosde.txt /usr/share/nvim/runtime/doc/tuosde.txt
-RUN nvim --headless -c "helptags ALL" +qall 2> /dev/null
+# Install SSH configuration.
+COPY files/ssh_config.conf /etc/ssh/ssh_config.d/
 
-# Install Neovim plugins.
-RUN nvim --headless +PlugInstall +UpdateRemotePlugins +qall 2> /dev/null
+# Create a new user inside of a container that will be mapped to a user from a
+# host during the runtime.
+RUN useradd -d /home/developer -m -s /bin/zsh -U developer
 
 # Install tmux configuration.
 COPY files/tmux.conf /etc/tmux.conf
@@ -159,15 +153,19 @@ RUN git clone \
 		https://github.com/tmux-plugins/tpm /usr/share/tmux/plugins/tpm && \
 	/usr/share/tmux/plugins/tpm/bin/install_plugins
 
-# Install Git configuration.
-COPY files/gitconfig /etc/gitconfig
+# Install Neovim configuration.
+COPY files/config.vim /usr/share/nvim/sysinit.vim
 
-# Install SSH configuration.
-COPY files/ssh_config.conf /etc/ssh/ssh_config.d/
+# Install Neovim plugins.
+RUN nvim --headless "+Lazy! sync" +qa
+RUN chown -R developer:developer /usr/share/nvim/plugins/nvim-treesitter/parser
 
-# Create and use a new user inside of a container that will be mapped to a user
-# from a host during the runtime.
-RUN useradd -d /home/developer -m -s /bin/zsh -U developer
+# Install Neovim TUOSDE documentation.
+COPY files/tuosde.txt /usr/share/nvim/runtime/doc/tuosde.txt
+
+# Install Neovim plugins.
+RUN nvim --headless -c "helptags ALL" +qall 2> /dev/null
+
 USER developer
 
 # When a user gains access to shell he will be put into a workspace directory.
