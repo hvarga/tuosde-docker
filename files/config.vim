@@ -442,7 +442,19 @@ END
 
 lua << END
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { "c", "lua", "vim", "dockerfile", "markdown" },
+  ensure_installed = {
+    "c",
+    "cpp",
+    "javascript",
+    "html",
+    "css",
+    "bash",
+    "json",
+    "lua",
+    "vim",
+    "dockerfile",
+    "markdown"
+  },
   sync_install = true,
   auto_install = true,
   highlight = {
