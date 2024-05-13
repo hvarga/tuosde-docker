@@ -3,7 +3,7 @@
 ## Introduction
 
 The aim of this repository is to encapsulate a development environment in a form
-of OCI container that provides a system-independent mouseless terminal-based
+of an OCI container that provides a system-independent mouseless terminal-based
 development environment consisting of an open source software. Hence, the naming
 of "TUOSDE" which is an acronym that stands for "The Ultimate Open Source
 Development Environment".
@@ -19,13 +19,13 @@ chapter [Run](#run) to run the OCI container.
 
 ## Motivation
 
-It started as a manual installation of a personalized software like you usually
-do but with versioned configuration files that can be downloaded and applied to
-your host operating system.
+The idea of a "portable" software started as a manual installation of a
+personalized software like you usually do but with versioned configuration files
+that can be downloaded and applied to your host operating system.
 
 From there, it grew to an unattended Arch Linux installation script that allowed
 user to install operating system together with all the software and its
-configuration without any user inputs.
+configuration without requiring any additional user inputs.
 
 Later on, it was converted to a tarball archive that provided all the
 dependancies and tools without a need to actually install them on a host
@@ -35,22 +35,24 @@ could use any GNU/Linux operating system running on a host machine.
 Finally, it was ported to an OCI compliant container engine which is used till
 this day. Due to this, user can use any major operating system on his host while
 still be able to have all his software that he actually cares about. The other
-major benefit is that, due to an OCI image and Docker, EVERYTHING is now kept in
-a Git repository. This self contained, small in size, text-only repository
-practically stores a source code which is built by Podman. The output of this
-build is OCI image, a blob of over 1GB of data that can be run by Podman which
-grants you an access to your development environment.
+major benefit is that, due to an OCI image and Docker or Podman, EVERYTHING is
+now kept in a Git repository. This self contained, small in size, text-only
+repository stores a source code which is built by Podman or Docker. The output
+of this build is an OCI image, relatively small in size, that can be run by
+Podman or Docker which grants you an access to your development environment on
+virtualy any machine. The only thing what such machine needs to have is support
+for Podman or Docker.
 
 ## Requirements
 
-The tuosde-docker is a userspace software and as such requires a host operating
+The tuosde-docker is an userspace software and as such requires a host operating
 system to run. The tuosde-docker supports all major ones like GNU/Linux, Windows
 and macOS.
 
-To build an OCI image and run a container from it, you need to have Podman
-installed on your host system. Follow your host operating system package manager
-or seek an online help to do so as installation steps are out-of-scope of this
-document.
+To build an OCI image and run a container from it, you need to have Podman or
+Docker installed on your host system. Follow your host operating system package
+manager or seek an online help to help you install as installation steps are not
+covering this part.
 
 ## Build
 
@@ -67,8 +69,7 @@ Install the shell script needed for running `hvarga/tuosde-docker` Podman image.
 
 ```
 sudo wget \
-	https://raw.githubusercontent.com/hvarga/tuosde-docker/master/run_tuosde_docker.sh \
-	-O /usr/local/bin/run_tuosde_docker.sh
+	cp run_tuosde_docker.sh -O /usr/local/bin/run_tuosde_docker.sh
 sudo chmod +x /usr/local/bin/run_tuosde_docker.sh
 ```
 
@@ -84,8 +85,8 @@ project:
 run_tuosde_docker.sh
 ```
 
-By default, above command will start the container with a tmux session from
-which you can start working on your project. Project files are mounted on
+By default, above command will start the container with a terminal multiplexor
+from which you can start working on your project. Project files are mounted on
 `/opt/workspace` which is also set as a current working directory.
 
 Read more about this script and various options by running:

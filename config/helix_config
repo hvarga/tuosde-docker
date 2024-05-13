@@ -1,0 +1,29 @@
+theme = "onedark"
+
+[editor]
+line-number = "relative"
+rulers = [80]
+cursorline = true
+auto-pairs = false
+color-modes = true
+
+[editor.file-picker]
+hidden = true
+
+[editor.lsp]
+enable = false
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[keys.normal]
+esc = ["collapse_selection", "keep_primary_selection"]
+"%" = "match_brackets"
+"tab" = ":bn"
+"S-tab" = ":bp"
+
+[keys.normal.space]
+m = ":toggle-option soft-wrap.enable"
+x = ":toggle whitespace.render all none"
