@@ -18,6 +18,9 @@ insert = "bar"
 normal = "block"
 select = "underline"
 
+[editor.smart-tab]
+enable = false
+
 [keys.normal]
 esc = ["collapse_selection", "keep_primary_selection"]
 "%" = "match_brackets"
