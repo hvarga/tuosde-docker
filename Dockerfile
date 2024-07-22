@@ -11,7 +11,7 @@ ENV COLORTERM "truecolor"
 RUN \
   apk add --no-cache \
     less man-db fish bash asciinema tree bitwise shellcheck nnn git-lfs fd \
-    ripgrep docs gitui helix delta zellij bat skim dust tree-sitter-grammars \
+    ripgrep docs gitui helix delta tmux bat fzf dust tree-sitter-grammars \
     g++ openssh-client-default
 
 # Copy configuration files into image.

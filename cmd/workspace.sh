@@ -31,4 +31,4 @@ done
 # needed on every run of a container. Otherwise, the software running in a
 # container could be missing a configuration and would fail to work as intended.
 config.sh
-zellij
+tmux
